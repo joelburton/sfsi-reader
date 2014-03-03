@@ -73,9 +73,11 @@
           </a>
           <ul class="dropdown-menu">
             <li><a href="{% url 'account_profile' %}">My Account</a></li>
-            <li><a href="{% url 'member.detail' slug=user.username %}">
-              My Public Profile
-            </a></li>
+            {% if request.user.visible %}
+              <li><a href="{% url 'member.detail' slug=user.username %}">
+                My Public Profile
+              </a></li>
+            {% endif %}
             {% if user.is_staff %}
               <li><a href="/admin/">Site Admin</a></li>
             {% endif %}

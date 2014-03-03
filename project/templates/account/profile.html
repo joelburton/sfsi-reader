@@ -6,8 +6,12 @@
 
 {% block account_content %}
   <h2>Edit Profile
-  <a class="pull-right btn btn-sm btn-primary"
+  {% if request.user.visible %}
+    <a class="pull-right btn btn-sm btn-primary"
       href="{% url 'member.detail' slug=user.username %}">View Your Public Profile</a>
+  {% else %}
+    <small class="pull-right text-muted">(Your profile is not visible to others)</small>
+  {% endif %}
   </h2>
 
   <form method="POST" action="" class="profile">

@@ -320,6 +320,8 @@ AUTH_USER_MODEL = "members.Member"
 SESSION_COOKIE_AGE = 60 * 60 * 24 * 14
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
+LOGIN_REDIRECT_URL = '/'
+
 
 ##################################################################################################
 # User avatars

@@ -1,0 +1,19 @@
+Fertility===Information about fertility.===birth-control-fertility
+Female Circumcision===Female circumcision and genital mutilation.===circumcision
+Male Circumcision===Male circumcision and the medical and social issues around it.===circumcision
+Bacterial Vaginosis===Bacterial infection of the vagina that may or may not be caused by sex.===stis
+Chlamydia===Common bacterial STI.===stis
+Gonorrhea===Common bacterial STI.===stis
+Hepatitis===Family of viruses, some of which are sexually transmissible.===stis
+Herpes===Common virus which is often sexually transmitted.===stis
+HIV===HIV/AIDS.===stis
+HPV===Extremely common virus that can cause genital warts or abnormal cells on the cervix.===stis
+Pelvic Inflammatory Disease (PID)===Serious inflammation of the female reproductive tract; usually caused by bacterial infection.===stis
+Pubic Lice===Critters on your junk :)===stis
+Scabies===Mites which can be transmitted by intimate contact.===stis
+Syphilis===Bacterial STI.===stis
+Trichomoniasis===A sexually transmitted parasite with symptoms similar to many other STIs.===stis
+LGV===LGV (Lymphogranuloma venereum); an STD caused by three strains of the Chlamydia trachomatis. ===stis
+MRSA===Methicillin-resistant Staphylococcus aureus.===stis
+Pearly Penile Papules===Though not an STD, people often assume they are.===stis
+Overviews & Common Issues===Resources common to different STDs.===stis

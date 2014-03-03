@@ -6,6 +6,7 @@
     "status": "published", 
     "description": "History, physiology, and tips on anal sex.", 
     "title": "Anal Sex", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.852Z", 
     "modified": "2014-03-01T23:06:26.176Z", 
     "day": 1, 
@@ -21,6 +22,7 @@
     "status": "published", 
     "description": "The use of fantasy & masturbation in sex and sexuality.", 
     "title": "Fantasy & Masturbation", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.875Z", 
     "modified": "2014-03-01T23:06:26.194Z", 
     "day": 1, 
@@ -36,6 +38,7 @@
     "status": "published", 
     "description": "History, physiology, and tips on fisting and manual sex.", 
     "title": "Fisting and Manual Sex", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.879Z", 
     "modified": "2014-03-01T23:06:26.211Z", 
     "day": 1, 
@@ -51,6 +54,7 @@
     "status": "published", 
     "description": "History, physiology, and tips on oral sex.", 
     "title": "Oral Sex", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.882Z", 
     "modified": "2014-03-01T23:06:26.231Z", 
     "day": 1, 
@@ -66,6 +70,7 @@
     "status": "published", 
     "description": "Penis-vagina sex.", 
     "title": "PV Sex", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.885Z", 
     "modified": "2014-03-01T23:06:26.249Z", 
     "day": 1, 
@@ -81,6 +86,7 @@
     "status": "published", 
     "description": "Learn to find and evaluate resources for accuracy and usefulness.", 
     "title": "Research Skills", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.889Z", 
     "modified": "2014-03-01T23:06:26.265Z", 
     "day": 1, 
@@ -96,6 +102,7 @@
     "status": "published", 
     "description": "Rules and etiquette for the SFSI class.", 
     "title": "Rules & Etiquette", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.892Z", 
     "modified": "2014-03-01T23:01:32.892Z", 
     "day": 1, 
@@ -111,6 +118,7 @@
     "status": "published", 
     "description": "Key concepts of the training, us/them stereotypes, and the PLISSIT model.", 
     "title": "Key Concepts", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.896Z", 
     "modified": "2014-03-01T23:06:26.289Z", 
     "day": 1, 
@@ -126,6 +134,7 @@
     "status": "published", 
     "description": "Social groups, identification, and stereotypes.", 
     "title": "Us & Them / Teaching Across Gaps", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.899Z", 
     "modified": "2014-03-01T23:07:43.908Z", 
     "day": 2, 
@@ -141,6 +150,7 @@
     "status": "published", 
     "description": "Anatomy and Physiology.", 
     "title": "Anatomy", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.901Z", 
     "modified": "2014-03-01T23:07:43.836Z", 
     "day": 2, 
@@ -150,31 +160,17 @@
   }
 },
 {
-  "pk": 11, 
-  "model": "resources.topic", 
-  "fields": {
-    "status": "published", 
-    "description": "Male circumcision and female circumcision/female genital mutilation.", 
-    "title": "Circumcision", 
-    "created": "2014-03-01T23:01:32.903Z", 
-    "modified": "2014-03-01T23:07:43.852Z", 
-    "day": 2, 
-    "position": 3, 
-    "status_changed": "2014-03-01T23:01:32.903Z", 
-    "slug": "circumcision"
-  }
-},
-{
   "pk": 12, 
   "model": "resources.topic", 
   "fields": {
     "status": "published", 
     "description": "Effective communication in relationships and with clients.", 
     "title": "Communication", 
+    "absolute_url": "/days/day-2/communication/", 
     "created": "2014-03-01T23:01:32.905Z", 
-    "modified": "2014-03-01T23:07:43.875Z", 
+    "modified": "2014-03-03T23:21:05.165Z", 
     "day": 2, 
-    "position": 4, 
+    "position": 5, 
     "status_changed": "2014-03-01T23:01:32.905Z", 
     "slug": "communication"
   }
@@ -186,6 +182,7 @@
     "status": "published", 
     "description": "An introduction to the overlaps and differences of sex, gender, and sexual orientation.", 
     "title": "Sex, Gender, & Orientation", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.907Z", 
     "modified": "2014-03-01T23:07:43.891Z", 
     "day": 2, 
@@ -201,6 +198,7 @@
     "status": "published", 
     "description": "The use of body modifications and plastic surgery, particularly focusing on those used for or viewed as sexually-oriented.", 
     "title": "Body Modifications", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.910Z", 
     "modified": "2014-03-01T23:08:18.451Z", 
     "day": 3, 
@@ -216,6 +214,7 @@
     "status": "published", 
     "description": "An overview of how science and research works with sex, and the history of research into sex.", 
     "title": "History of Sex and Science", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.912Z", 
     "modified": "2014-03-01T23:01:32.912Z", 
     "day": 3, 
@@ -231,6 +230,7 @@
     "status": "published", 
     "description": "Intersex and Disorders of Sexual Development.", 
     "title": "Intersex & DSD", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.915Z", 
     "modified": "2014-03-01T23:08:18.475Z", 
     "day": 3, 
@@ -246,6 +246,7 @@
     "status": "published", 
     "description": "An overview of the symptoms and medical and social effects of sexual dysfunctions.", 
     "title": "Sexual Dysfunction", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.917Z", 
     "modified": "2014-03-01T23:08:18.492Z", 
     "day": 3, 
@@ -261,6 +262,7 @@
     "status": "published", 
     "description": "Transgender and related issues: transsexuals, gender identity disorder, and social/medical impacts of gender transitions.", 
     "title": "Transgender", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.920Z", 
     "modified": "2014-03-01T23:08:18.508Z", 
     "day": 3, 
@@ -276,10 +278,11 @@
     "status": "published", 
     "description": "What you need to know about abortion as a sex educator.", 
     "title": "Abortion", 
+    "absolute_url": "/days/day-4/abortion/", 
     "created": "2014-03-01T23:01:32.922Z", 
-    "modified": "2014-03-01T23:08:59.682Z", 
+    "modified": "2014-03-03T23:22:44.371Z", 
     "day": 4, 
-    "position": 3, 
+    "position": 4, 
     "status_changed": "2014-03-01T23:01:32.922Z", 
     "slug": "abortion"
   }
@@ -291,10 +294,11 @@
     "status": "published", 
     "description": "Fertility, reproduction, & birth control methods.", 
     "title": "Birth Control & Fertility", 
+    "absolute_url": "/days/day-4/birth-control-fertility/", 
     "created": "2014-03-01T23:01:32.924Z", 
-    "modified": "2014-03-01T23:01:32.924Z", 
+    "modified": "2014-03-03T23:21:35.463Z", 
     "day": 4, 
-    "position": 0, 
+    "position": 1, 
     "status_changed": "2014-03-01T23:01:32.924Z", 
     "slug": "birth-control-fertility"
   }
@@ -306,12 +310,13 @@
     "status": "published", 
     "description": "Potential causes of infertility and the impact it can have on sexuality and relationships.", 
     "title": "Infertility & Getting Babies", 
+    "absolute_url": "/days/day-4/infertility-getting-babies/", 
     "created": "2014-03-01T23:01:32.926Z", 
-    "modified": "2014-03-01T23:08:59.707Z", 
+    "modified": "2014-03-03T23:22:44.413Z", 
     "day": 4, 
-    "position": 1, 
+    "position": 2, 
     "status_changed": "2014-03-01T23:01:32.926Z", 
-    "slug": "infertility-and-getting-babies"
+    "slug": "infertility-getting-babies"
   }
 },
 {
@@ -321,10 +326,11 @@
     "status": "published", 
     "description": "Harm reduction strategies for health education.", 
     "title": "Negotiation & Harm Reduction", 
+    "absolute_url": "/days/day-4/negotiation-harm-reduction/", 
     "created": "2014-03-01T23:01:32.927Z", 
-    "modified": "2014-03-01T23:08:59.725Z", 
+    "modified": "2014-03-03T23:22:44.432Z", 
     "day": 4, 
-    "position": 4, 
+    "position": 5, 
     "status_changed": "2014-03-01T23:01:32.927Z", 
     "slug": "negotiation-harm-reduction"
   }
@@ -336,10 +342,11 @@
     "status": "published", 
     "description": "Pregnancy, fetal development, and birth.", 
     "title": "Pregnancy & Birth", 
+    "absolute_url": "/days/day-4/pregnancy-birth/", 
     "created": "2014-03-01T23:01:32.929Z", 
-    "modified": "2014-03-01T23:08:59.743Z", 
+    "modified": "2014-03-03T23:22:44.346Z", 
     "day": 4, 
-    "position": 2, 
+    "position": 3, 
     "status_changed": "2014-03-01T23:01:32.929Z", 
     "slug": "pregnancy-birth"
   }
@@ -351,9 +358,10 @@
     "status": "published", 
     "description": "Resources for safer sex: techniques, materials, social research.", 
     "title": "Safer Sex", 
+    "absolute_url": "/days/day-7/safer-sex/", 
     "created": "2014-03-01T23:01:32.931Z", 
-    "modified": "2014-03-01T23:08:59.759Z", 
-    "day": 4, 
+    "modified": "2014-03-03T23:15:35.998Z", 
+    "day": 7, 
     "position": 5, 
     "status_changed": "2014-03-01T23:01:32.931Z", 
     "slug": "safer-sex"
@@ -366,10 +374,11 @@
     "status": "published", 
     "description": "Sexual transmitted infections.", 
     "title": "STIs", 
+    "absolute_url": "/days/day-4/stis/", 
     "created": "2014-03-01T23:01:32.933Z", 
-    "modified": "2014-03-01T23:12:17.232Z", 
-    "day": 7, 
-    "position": 5, 
+    "modified": "2014-03-03T23:22:44.391Z", 
+    "day": 4, 
+    "position": 6, 
     "status_changed": "2014-03-01T23:01:32.933Z", 
     "slug": "stis"
   }
@@ -381,8 +390,9 @@
     "status": "published", 
     "description": "Erotica and its role in sex.", 
     "title": "Porn", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.935Z", 
-    "modified": "2014-03-01T23:10:05.000Z", 
+    "modified": "2014-03-01T23:10:05Z", 
     "day": 5, 
     "position": 1, 
     "status_changed": "2014-03-01T23:01:32.935Z", 
@@ -396,6 +406,7 @@
     "status": "published", 
     "description": "Finding relationships, and different relationship styles.", 
     "title": "Relationships", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.937Z", 
     "modified": "2014-03-01T23:10:05.021Z", 
     "day": 5, 
@@ -411,6 +422,7 @@
     "status": "published", 
     "description": "An introduction to issues around disabilities and sexual identities/behaviors.", 
     "title": "Sex & Disabilities", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.939Z", 
     "modified": "2014-03-01T23:01:32.939Z", 
     "day": 5, 
@@ -426,6 +438,7 @@
     "status": "published", 
     "description": "Sexual assault, rape, and the recovery process.", 
     "title": "Abuse & Recovery", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.941Z", 
     "modified": "2014-03-01T23:11:25.042Z", 
     "day": 6, 
@@ -441,6 +454,7 @@
     "status": "published", 
     "description": "Defining consent, and helping clients understand how to work with it.", 
     "title": "Consent", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.943Z", 
     "modified": "2014-03-01T23:01:32.943Z", 
     "day": 6, 
@@ -456,6 +470,7 @@
     "status": "published", 
     "description": "Understanding human sexual development.", 
     "title": "Developmental Stages", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.945Z", 
     "modified": "2014-03-01T23:11:25.072Z", 
     "day": 6, 
@@ -471,6 +486,7 @@
     "status": "published", 
     "description": "Perpetrators of sexual violence.", 
     "title": "Perpetrators", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.948Z", 
     "modified": "2014-03-01T23:11:25.094Z", 
     "day": 6, 
@@ -486,6 +502,7 @@
     "status": "published", 
     "description": "The aging process and its effect on sexuality and sexual health.", 
     "title": "Sex & Aging", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.951Z", 
     "modified": "2014-03-01T23:11:25.114Z", 
     "day": 6, 
@@ -501,6 +518,7 @@
     "status": "published", 
     "description": "Issues specific to teenage sexual identity.", 
     "title": "Sex & Teens", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.953Z", 
     "modified": "2014-03-01T23:11:25.132Z", 
     "day": 6, 
@@ -516,6 +534,7 @@
     "status": "published", 
     "description": "Legal issues around sex.", 
     "title": "Sex & the Law", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.955Z", 
     "modified": "2014-03-01T23:11:25.148Z", 
     "day": 6, 
@@ -531,6 +550,7 @@
     "status": "published", 
     "description": "How some people and religions integrate sex and their spirituality. Note: this topic is no longer presented in the class, but these resources are still available.", 
     "title": "Spirituality", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.957Z", 
     "modified": "2014-03-01T23:11:48.819Z", 
     "day": 6, 
@@ -546,6 +566,7 @@
     "status": "published", 
     "description": "The physiology and social science around female ejaculation and the much-discussed 'G-Spot'.", 
     "title": "Female Ejaculation & G-Spot", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.959Z", 
     "modified": "2014-03-01T23:01:32.959Z", 
     "day": 7, 
@@ -561,6 +582,7 @@
     "status": "published", 
     "description": "Threesomes, play parties, orgies, and other forms of multiple-person sex.", 
     "title": "Group Sex & Sex Parties", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.961Z", 
     "modified": "2014-03-01T23:12:17.131Z", 
     "day": 7, 
@@ -576,6 +598,7 @@
     "status": "published", 
     "description": "The impact on sex and sexual health of prescription & street drugs.", 
     "title": "Sex & Drugs", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.964Z", 
     "modified": "2014-03-01T23:12:17.151Z", 
     "day": 7, 
@@ -591,6 +614,7 @@
     "status": "published", 
     "description": "Toys, lube, and safer sex supplies.", 
     "title": "Toys & Lube", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.966Z", 
     "modified": "2014-03-01T23:12:17.171Z", 
     "day": 7, 
@@ -606,6 +630,7 @@
     "status": "published", 
     "description": "Looking and being watched.", 
     "title": "Voyeurism and Exhibitionism", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.969Z", 
     "modified": "2014-03-01T23:12:17.208Z", 
     "day": 7, 
@@ -621,6 +646,7 @@
     "status": "published", 
     "description": "Bondage, SM play, and other forms of power play.", 
     "title": "BDSM", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.971Z", 
     "modified": "2014-03-01T23:12:39.197Z", 
     "day": 8, 
@@ -636,6 +662,7 @@
     "status": "published", 
     "description": "The role of kink and fetish.", 
     "title": "Fetishes", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.973Z", 
     "modified": "2014-03-01T23:12:39.213Z", 
     "day": 8, 
@@ -651,6 +678,7 @@
     "status": "published", 
     "description": "Working with health professionals around sex.", 
     "title": "Health Professionals", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.976Z", 
     "modified": "2014-03-01T23:01:32.976Z", 
     "day": 8, 
@@ -666,6 +694,7 @@
     "status": "published", 
     "description": "How to recognize and respond to sexual emergencies.", 
     "title": "Sex Emergencies", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.979Z", 
     "modified": "2014-03-01T23:12:39.243Z", 
     "day": 8, 
@@ -681,6 +710,7 @@
     "status": "published", 
     "description": "An introduction to sex work.", 
     "title": "Sex Work", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:01:32.980Z", 
     "modified": "2014-03-01T23:12:39.260Z", 
     "day": 8, 
@@ -696,12 +726,317 @@
     "status": "published", 
     "description": "Issues around body image and the impact this can have on sexuality.", 
     "title": "Body Image", 
+    "absolute_url": "", 
     "created": "2014-03-01T23:11:24.859Z", 
     "modified": "2014-03-01T23:11:48.839Z", 
     "day": 6, 
     "position": 7, 
     "status_changed": "2014-03-01T23:11:25.179Z", 
     "slug": "body-image"
+  }
+},
+{
+  "pk": 50, 
+  "model": "resources.topic", 
+  "fields": {
+    "status": "published", 
+    "description": "Information about fertility.", 
+    "title": "Fertility", 
+    "absolute_url": "/days/day-4/fertility/", 
+    "created": "2014-03-03T23:12:18.945Z", 
+    "modified": "2014-03-03T23:12:18.950Z", 
+    "day": 4, 
+    "position": 0, 
+    "status_changed": "2014-03-03T23:12:18.945Z", 
+    "slug": "fertility"
+  }
+},
+{
+  "pk": 51, 
+  "model": "resources.topic", 
+  "fields": {
+    "status": "published", 
+    "description": "Female circumcision and genital mutilation.", 
+    "title": "Female Circumcision", 
+    "absolute_url": "/days/day-2/female-circumcision/", 
+    "created": "2014-03-03T23:12:18.970Z", 
+    "modified": "2014-03-03T23:21:05.193Z", 
+    "day": 2, 
+    "position": 6, 
+    "status_changed": "2014-03-03T23:12:18.970Z", 
+    "slug": "female-circumcision"
+  }
+},
+{
+  "pk": 52, 
+  "model": "resources.topic", 
+  "fields": {
+    "status": "published", 
+    "description": "Male circumcision and the medical and social issues around it.", 
+    "title": "Male Circumcision", 
+    "absolute_url": "/days/day-2/male-circumcision/", 
+    "created": "2014-03-03T23:12:18.975Z", 
+    "modified": "2014-03-03T23:13:14.964Z", 
+    "day": 2, 
+    "position": 4, 
+    "status_changed": "2014-03-03T23:12:18.975Z", 
+    "slug": "male-circumcision"
+  }
+},
+{
+  "pk": 53, 
+  "model": "resources.topic", 
+  "fields": {
+    "status": "published", 
+    "description": "Bacterial infection of the vagina that may or may not be caused by sex.", 
+    "title": "Bacterial Vaginosis", 
+    "absolute_url": "/days/day-4/bacterial-vaginosis/", 
+    "created": "2014-03-03T23:12:18.979Z", 
+    "modified": "2014-03-03T23:23:04.825Z", 
+    "day": 4, 
+    "position": 7, 
+    "status_changed": "2014-03-03T23:12:18.979Z", 
+    "slug": "bacterial-vaginosis"
+  }
+},
+{
+  "pk": 54, 
+  "model": "resources.topic", 
+  "fields": {
+    "status": "published", 
+    "description": "Common bacterial STI.", 
+    "title": "Chlamydia", 
+    "absolute_url": "/days/day-4/chlamydia/", 
+    "created": "2014-03-03T23:12:18.984Z", 
+    "modified": "2014-03-03T23:23:04.804Z", 
+    "day": 4, 
+    "position": 8, 
+    "status_changed": "2014-03-03T23:12:18.985Z", 
+    "slug": "chlamydia"
+  }
+},
+{
+  "pk": 55, 
+  "model": "resources.topic", 
+  "fields": {
+    "status": "published", 
+    "description": "Common bacterial STI.", 
+    "title": "Gonorrhea", 
+    "absolute_url": "/days/day-4/gonorrhea/", 
+    "created": "2014-03-03T23:12:18.989Z", 
+    "modified": "2014-03-03T23:22:44.328Z", 
+    "day": 4, 
+    "position": 9, 
+    "status_changed": "2014-03-03T23:12:18.989Z", 
+    "slug": "gonorrhea"
+  }
+},
+{
+  "pk": 56, 
+  "model": "resources.topic", 
+  "fields": {
+    "status": "published", 
+    "description": "Family of viruses, some of which are sexually transmissible.", 
+    "title": "Hepatitis", 
+    "absolute_url": "/days/day-4/hepatitis/", 
+    "created": "2014-03-03T23:12:18.993Z", 
+    "modified": "2014-03-03T23:22:12.697Z", 
+    "day": 4, 
+    "position": 10, 
+    "status_changed": "2014-03-03T23:12:18.994Z", 
+    "slug": "hepatitis"
+  }
+},
+{
+  "pk": 57, 
+  "model": "resources.topic", 
+  "fields": {
+    "status": "published", 
+    "description": "Common virus which is often sexually transmitted.", 
+    "title": "Herpes", 
+    "absolute_url": "/days/day-4/herpes/", 
+    "created": "2014-03-03T23:12:18.997Z", 
+    "modified": "2014-03-03T23:22:12.719Z", 
+    "day": 4, 
+    "position": 11, 
+    "status_changed": "2014-03-03T23:12:18.997Z", 
+    "slug": "herpes"
+  }
+},
+{
+  "pk": 58, 
+  "model": "resources.topic", 
+  "fields": {
+    "status": "published", 
+    "description": "HIV/AIDS.", 
+    "title": "HIV", 
+    "absolute_url": "/days/day-4/hiv/", 
+    "created": "2014-03-03T23:12:19.001Z", 
+    "modified": "2014-03-03T23:22:12.736Z", 
+    "day": 4, 
+    "position": 12, 
+    "status_changed": "2014-03-03T23:12:19.001Z", 
+    "slug": "hiv"
+  }
+},
+{
+  "pk": 59, 
+  "model": "resources.topic", 
+  "fields": {
+    "status": "published", 
+    "description": "Extremely common virus that can cause genital warts or abnormal cells on the cervix.", 
+    "title": "HPV", 
+    "absolute_url": "/days/day-4/hpv/", 
+    "created": "2014-03-03T23:12:19.005Z", 
+    "modified": "2014-03-03T23:22:12.759Z", 
+    "day": 4, 
+    "position": 13, 
+    "status_changed": "2014-03-03T23:12:19.005Z", 
+    "slug": "hpv"
+  }
+},
+{
+  "pk": 60, 
+  "model": "resources.topic", 
+  "fields": {
+    "status": "published", 
+    "description": "Serious inflammation of the female reproductive tract; usually caused by bacterial infection.", 
+    "title": "Pelvic Inflammatory Disease (PID)", 
+    "absolute_url": "/days/day-4/pelvic-inflammatory-disease-pid/", 
+    "created": "2014-03-03T23:12:19.010Z", 
+    "modified": "2014-03-03T23:23:04.990Z", 
+    "day": 4, 
+    "position": 18, 
+    "status_changed": "2014-03-03T23:12:19.010Z", 
+    "slug": "pelvic-inflammatory-disease-pid"
+  }
+},
+{
+  "pk": 61, 
+  "model": "resources.topic", 
+  "fields": {
+    "status": "published", 
+    "description": "Critters on your junk :)", 
+    "title": "Pubic Lice", 
+    "absolute_url": "/days/day-4/pubic-lice/", 
+    "created": "2014-03-03T23:12:19.026Z", 
+    "modified": "2014-03-03T23:23:05.011Z", 
+    "day": 4, 
+    "position": 19, 
+    "status_changed": "2014-03-03T23:12:19.026Z", 
+    "slug": "pubic-lice"
+  }
+},
+{
+  "pk": 62, 
+  "model": "resources.topic", 
+  "fields": {
+    "status": "published", 
+    "description": "Mites which can be transmitted by intimate contact.", 
+    "title": "Scabies", 
+    "absolute_url": "/days/day-4/scabies/", 
+    "created": "2014-03-03T23:12:19.036Z", 
+    "modified": "2014-03-03T23:23:05.027Z", 
+    "day": 4, 
+    "position": 20, 
+    "status_changed": "2014-03-03T23:12:19.036Z", 
+    "slug": "scabies"
+  }
+},
+{
+  "pk": 63, 
+  "model": "resources.topic", 
+  "fields": {
+    "status": "published", 
+    "description": "Bacterial STI.", 
+    "title": "Syphilis", 
+    "absolute_url": "/days/day-4/syphilis/", 
+    "created": "2014-03-03T23:12:19.040Z", 
+    "modified": "2014-03-03T23:23:24.773Z", 
+    "day": 4, 
+    "position": 21, 
+    "status_changed": "2014-03-03T23:12:19.040Z", 
+    "slug": "syphilis"
+  }
+},
+{
+  "pk": 64, 
+  "model": "resources.topic", 
+  "fields": {
+    "status": "published", 
+    "description": "A sexually transmitted parasite with symptoms similar to many other STIs.", 
+    "title": "Trichomoniasis", 
+    "absolute_url": "/days/day-4/trichomoniasis/", 
+    "created": "2014-03-03T23:12:19.044Z", 
+    "modified": "2014-03-03T23:23:24.751Z", 
+    "day": 4, 
+    "position": 22, 
+    "status_changed": "2014-03-03T23:12:19.044Z", 
+    "slug": "trichomoniasis"
+  }
+},
+{
+  "pk": 65, 
+  "model": "resources.topic", 
+  "fields": {
+    "status": "published", 
+    "description": "LGV (Lymphogranuloma venereum); an STD caused by three strains of the Chlamydia trachomatis. ", 
+    "title": "LGV", 
+    "absolute_url": "/days/day-4/lgv/", 
+    "created": "2014-03-03T23:12:19.048Z", 
+    "modified": "2014-03-03T23:23:04.909Z", 
+    "day": 4, 
+    "position": 14, 
+    "status_changed": "2014-03-03T23:12:19.048Z", 
+    "slug": "lgv"
+  }
+},
+{
+  "pk": 66, 
+  "model": "resources.topic", 
+  "fields": {
+    "status": "published", 
+    "description": "Methicillin-resistant Staphylococcus aureus.", 
+    "title": "MRSA", 
+    "absolute_url": "/days/day-4/mrsa/", 
+    "created": "2014-03-03T23:12:19.053Z", 
+    "modified": "2014-03-03T23:23:04.927Z", 
+    "day": 4, 
+    "position": 15, 
+    "status_changed": "2014-03-03T23:12:19.053Z", 
+    "slug": "mrsa"
+  }
+},
+{
+  "pk": 67, 
+  "model": "resources.topic", 
+  "fields": {
+    "status": "published", 
+    "description": "Though not an STD, people often assume they are.", 
+    "title": "Pearly Penile Papules", 
+    "absolute_url": "/days/day-4/pearly-penile-papules/", 
+    "created": "2014-03-03T23:12:19.057Z", 
+    "modified": "2014-03-03T23:23:04.951Z", 
+    "day": 4, 
+    "position": 16, 
+    "status_changed": "2014-03-03T23:12:19.057Z", 
+    "slug": "pearly-penile-papules"
+  }
+},
+{
+  "pk": 68, 
+  "model": "resources.topic", 
+  "fields": {
+    "status": "published", 
+    "description": "Resources common to different STDs.", 
+    "title": "Overviews & Common Issues", 
+    "absolute_url": "/days/day-4/overviews-common-issues/", 
+    "created": "2014-03-03T23:12:19.061Z", 
+    "modified": "2014-03-03T23:23:04.972Z", 
+    "day": 4, 
+    "position": 17, 
+    "status_changed": "2014-03-03T23:12:19.061Z", 
+    "slug": "overviews-common-issues"
   }
 }
 ]
