@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
 {% block title %}Home{% endblock %}
-{% block page_title %}Welcome to the SFSI Reader{% endblock %}
 
 {% block content %}
   <div id="homepage">
+  <h1>Welcome to the SFSI Reader</h1>
     <p class="lead">Our website for the Spring 2014 SFSI Sex Educator Training.</p>
 
     <div class="homepage-nav">
@@ -37,6 +37,13 @@
           <span class="glyphicon glyphicon-globe"></span> Directory of Additional Resources</h2>
       </a>
       </h2>
+
+      <h2>
+        <a href="/accounts/">
+          <span class="glyphicon glyphicon-user"></span> Students for Your Class</h2>
+      </a>
+      </h2>
+
     </div>
 
     <h2 class="questions">Questions or Suggestions?</h2>
@@ -48,4 +55,28 @@
     <p>If you have suggestions about items you think should be considered for inclusion in the reader,
       please use our <a href="/suggestions/">Suggestion Form</a>.</p>
   </div>
+{% endblock %}
+
+
+{% block portlets %}
+
+  {% if latest_resources %}
+  <div class="portlet">
+    <header>Recent Resources</header>
+    <ul>
+      {% for resource in latest_resources %}
+      <li><a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  {% if comment_list %}
+  <div class="portlet">
+    <header>Latest Comments</header>
+    {% include "comments/list.html" %}
+  </div>
+  {% endif %}
+
+  {{ block.super }}
 {% endblock %}

@@ -3,6 +3,7 @@ body {
   /* 60px to make the container go all the way to the bottom of the topbar */
 }
 .navbar {
+  font-weight: 300;
   font-size: 100%;
 }
 @media (max-width: 992px) {
@@ -22,21 +23,38 @@ body {
 .navbar .navbar-brand b {
   font-weight: 700;
 }
+.navbar a {
+  font-weight: 300 !important;
+}
+.navbar img {
+  margin-top: -5px;
+}
 .navbar.navbar-inverse {
   background-color: black;
 }
 .navbar li.active a {
   background-color: #333 !important;
 }
-.navbar li a:hover {
+.navbar li a:hover,
+.navbar li a:active {
   background-color: red !important;
 }
-.navbar li a:hover .glyphicon {
+.navbar li a:hover .glyphicon,
+.navbar li a:active .glyphicon {
   color: white;
+}
+.navbar li.open > a {
+  background-color: black !important;
+}
+.navbar .dropdown-menu {
+  background-color: white;
+}
+.navbar .dropdown-menu li a {
+  color: black !important;
 }
 .navbar .search-input {
   border-radius: 30px;
-  margin-top: 2px;
+  margin-top: 8px;
 }
 .navbar-inverse {
   background-color: black;
@@ -75,6 +93,9 @@ a {
 .glyphicon-list-alt {
   color: orange;
 }
+.glyphicon-user {
+  color: purple;
+}
 #homepage .homepage-nav {
   margin-top: 3em;
 }
@@ -84,6 +105,14 @@ a {
 #homepage .homepage-nav a:hover {
   text-decoration: none;
   color: red;
+}
+#homepage h2 {
+  font-size: 175%;
+}
+@media (max-width: 768px) {
+  #homepage h2 {
+    font-size: 150%;
+  }
 }
 #homepage .questions {
   margin-top: 3em;
@@ -122,9 +151,12 @@ dd {
   border: solid 1px #333;
   padding: 1em;
 }
+#portlet-column {
+  margin-top: 3em;
+}
 .portlet {
-  border-top: solid 1px #ccc;
-  padding-top: 0.5em;
+  border-top: solid 1px #aaa;
+  padding-top: 0.3em;
   margin-bottom: 2em;
   font-size: 90%;
 }
@@ -139,4 +171,16 @@ dd {
 }
 .portlet li {
   list-style: none;
+}
+#id_comment {
+  height: 4.5em;
+  width: 100%;
+  font-size: 90%;
+}
+#comments {
+  font-size: 90%;
+}
+#comments dt {
+  color: red;
+  font-weight: 600;
 }

@@ -3,6 +3,7 @@ body {
 }
 
 .navbar {
+  font-weight: 300;
   font-size: 100%;
 
   @media (max-width: 992px) {
@@ -22,6 +23,14 @@ body {
     }
   }
 
+  a {
+    font-weight: 300 !important
+  }
+
+  img {
+    margin-top: -5px;
+  }
+
   &.navbar-inverse {
     background-color: black;
   }
@@ -30,14 +39,27 @@ body {
     background-color: #333 !important;
   }
 
-  li a:hover {
+  li a:hover,
+  li a:active
+  {
     background-color: red !important;
     .glyphicon { color: white; }
   }
 
+  li.open > a {
+    background-color: black !important;
+  }
+
+  .dropdown-menu {
+    background-color: white;
+    li a {
+      color: black !important;
+    }
+  }
+
   .search-input {
     border-radius: 30px;
-    margin-top: 2px;
+    margin-top: 8px;
   }
 
 }
@@ -94,6 +116,10 @@ a {
   color: orange;
 }
 
+.glyphicon-user {
+  color: purple;
+}
+
 
 #homepage {
 
@@ -111,6 +137,13 @@ a {
     }
   }
 
+  h2 {
+    font-size: 175%;
+
+    @media (max-width: 768px) {
+      font-size: 150%;
+    }
+  }
   .questions {
     margin-top: 3em;
     text-transform: uppercase;
@@ -160,9 +193,13 @@ dd {
   padding: 1em;
 }
 
+#portlet-column {
+  margin-top: 3em;
+}
+
 .portlet {
-  border-top: solid 1px #ccc;
-  padding-top: 0.5em;
+  border-top: solid 1px #aaa;
+  padding-top: 0.3em;
   margin-bottom: 2em;
   font-size: 90%;
 
@@ -180,4 +217,19 @@ dd {
   li {
     list-style: none;
   }
+}
+
+#id_comment {
+  height: 4.5em;
+  width: 100%;
+  font-size: 90%;
+}
+
+#comments
+{
+  font-size: 90%;
+dt {
+  color: red;
+  font-weight: 600;
+}
 }

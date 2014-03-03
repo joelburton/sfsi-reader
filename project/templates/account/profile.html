@@ -1,0 +1,27 @@
+{% extends "account/base.html" %}
+{% load bootstrap static %}
+
+{% block head_title %}Profile{% endblock %}
+{% block account_nav_profile %}active{% endblock %}
+
+{% block account_content %}
+  <h2>Edit Profile
+  <a class="pull-right btn btn-sm btn-primary"
+      href="{% url 'member.detail' slug=user.username %}">View Your Public Profile</a>
+  </h2>
+
+  <form method="POST" action="" class="profile">
+  {% csrf_token %}
+
+  {{ form|bootstrap }}
+
+  <div class="form-actions">
+    <button class="btn btn-primary" type="submit" name="action">Update Profile</button>
+  </div>
+
+{% endblock %}
+
+{% block extra_js %}
+  <script src="{% static 'grappelli/tinymce/jscripts/tiny_mce/tiny_mce.js' %}"></script>
+  <script src="{% static 'js/tinymce_setup.js' %}"></script>
+{% endblock %}

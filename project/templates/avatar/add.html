@@ -1,0 +1,28 @@
+{% extends "account/base.html" %}
+{% load avatar_tags bootstrap %}
+
+
+{% block head_title %}Avatar{% endblock %}
+{% block account_nav_avatar %}active{% endblock %}
+
+{% block account_content %}
+  <h2>Update Avatar
+    <a class="pull-right btn btn-sm btn-primary"
+       href="{% url 'member.detail' slug=user.username %}">View Your Public Profile</a>
+
+  </h2>
+
+  <p>Your current avatar:</p>
+
+  {% avatar user %}
+
+  {% if not avatars %}
+    <p>You haven&lsquo;t uploaded an avatar yet. Please upload one now.</p>
+  {% endif %}
+
+  <form enctype="multipart/form-data" method="POST" action="{% url 'account_avatar' %}">
+    {{ upload_avatar_form|bootstrap }}
+    <p>{% csrf_token %}<input type="submit" class="btn btn-primary" value="Upload New Image"/></p>
+  </form>
+{% endblock %}
+

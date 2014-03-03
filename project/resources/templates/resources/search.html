@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
 {% block title %}Search{% if q %} Results: {{ q }}{% endif %}{% endblock %}
-{% block page_title %}Search{% if q %} Results{% endif %}{% endblock %}
 
 {% block content %}
+  <h1>Search{% if q %} Results{% endif %}</h1>
   <div id="search-results">
 
     <form role="form" class="form-horizontal">

@@ -1,0 +1,17 @@
+{% load socialaccount %}
+
+{% for provider in socialaccount.providers %}
+
+  {% if provider.id == 'google' %}
+      <a title="{{ provider.name }}" class="btn btn-block btn-social btn-google-plus"
+         href="{% provider_login_url provider.id process=process %}">
+        <i class="fa fa-google-plus"></i> {{ action|default:'Connect with' }} {{ provider.name }}
+      </a>
+  {% else %}
+      <a title="{{ provider.name }}" class="btn btn-block btn-social btn-{{ provider.id }}"
+         href="{% provider_login_url provider.id process=process %}">
+        <i class="fa fa-{{ provider.id }}"></i> {{ action|default:'Connect with' }} {{ provider.name }}
+      </a>
+  {% endif %}
+{% endfor %}
+

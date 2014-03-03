@@ -1,5 +1,7 @@
 """Views related to resources and searching resources."""
+from django.conf import settings
 from django.contrib import messages
+from django.core.mail import send_mail
 
 from django.db import connection
 from django.http import Http404
@@ -195,6 +197,20 @@ class SearchView(generic.TemplateView):
         return data
 
 
+##################################################################################################
+
+
+MSG = """
+A new resource has been suggested for the reader.
+
+Name: %(name)s
+Email: %(email)s
+Title: %(title)s
+Description: %(description)s
+
+Please visit the reader to view this resource.
+"""
+
 class SuggestionCreateView(generic.CreateView):
     """Create view for suggestions."""
 
@@ -214,5 +230,12 @@ class SuggestionCreateView(generic.CreateView):
                 'email': self.request.user.email}
 
     def form_valid(self, form):
+
+        send_mail("[Reader Suggestion] %s" % form.cleaned_data['title'],
+                  MSG % form.cleaned_data,
+                  form.cleaned_data['email'],
+                  [x[1] for x in settings.MANAGERS],
+                  fail_silently=False)
+
         messages.add_message(self.request, messages.SUCCESS, "Your suggestion has been noted.")
         return super(SuggestionCreateView, self).form_valid(form)

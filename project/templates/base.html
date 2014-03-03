@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load staticfiles avatar_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,33 +35,55 @@
       <a class="navbar-brand" href="/"><b class="brand-sf">SF</b><b class="brand-si">SI</b> Reader</a>
     </div>
     <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        {# Push out site navigation; we get this from our context processor #}
-        {% for nav in site_nav %}
-          <li class="{{ nav.class }}">
-            <a href="{{ nav.path }}">
-              <span class="glyphicon glyphicon-{{ nav.glyph }}"></span>
-              {{ nav.title }}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-      {# Ipad devices just get a search-icon link #}
-      <ul class="nav navbar-nav navbar-right visible-sm">
-        <li><a href="/search/"><span class="glyphicon glyphicon-search"></span></a></li>
-      </ul>
-      {# All other devices get a search form #}
-      <form action="/search/"
-            class="navbar-form navbar-right visible-xs visible-md visible-lg"
-            role="search">
-        <div class="form-group">
-          <input type="text"
-                 name="q"
-                 class="search-input form-control input-sm"
-                 placeholder="Search"
-                 value="{{ view.request.GET.q }}">
-        </div>
-      </form>
+      {% if request.user.is_authenticated %}
+        <ul class="nav navbar-nav">
+          {# Push out site navigation; we get this from our context processor #}
+          {% for nav in site_nav %}
+            <li class="{{ nav.class }}">
+              <a href="{{ nav.path }}">
+                <span class="glyphicon glyphicon-{{ nav.glyph }}"></span>
+                {{ nav.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+
+        {# Ipad devices just get a search-icon link #}
+        <li class="visible-sm">
+          <a href="/search/"><span class="glyphicon glyphicon-search"></span></a>
+        </li>
+
+        {# All other devices get a search form #}
+        <li class="visible-xs visible-md visible-lg">
+          <form action="/search/" role="search" class="form-inline">
+            <div class="form-group">
+              <input type="text"
+                     name="q"
+                     class="search-input form-control input-sm"
+                     placeholder="Search"
+                     value="{{ view.request.GET.q }}">
+            </div>
+          </form>
+        </li>
+
+        <li class="dropdown profile-dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <img src="{% avatar_url user 20 %}"/>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="{% url 'account_profile' %}">My Account</a></li>
+            <li><a href="{% url 'member.detail' slug=user.username %}">
+              My Public Profile
+            </a></li>
+            {% if user.is_staff %}
+              <li><a href="/admin/">Site Admin</a></li>
+            {% endif %}
+            <li><a href="{% url 'account_logout' %}">Logout</a></li>
+          </ul>
+        </li>
+
+      {% endif %}
     </div>
   </div>
 </div>
@@ -82,19 +104,14 @@
 
   {# Show session flash messages #}
   {% if messages %}
-    <div class="container messages">
+    <div class="messages">
       <p class="sr-only">Notifications:</p>
 
-      <div class="container">
-        {% for message in messages %}
-          <div class="alert alert-{{ message.tags }}">{{ message|safe }}</div>
-        {% endfor %}
-      </div>
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message|safe }}</div>
+      {% endfor %}
     </div>
   {% endif %}
-
-
-  <h1>{% block page_title %}{{ object.title }}{% endblock page_title %}</h1>
 
   <div class="row">
     <div class="col-md-8">
@@ -103,17 +120,18 @@
       {% endblock content %}
     </div>
 
-    <div class="col-md-3 col-md-offset-1">
-      {% block portlets %}
-        <div class="portlet">
-        <header>Suggestions?</header>
-        <p>Are there resources you'd like to see?
-          <a href="/suggestions/">Tell us!</a>
-        </p>
-        </div>
-
-      {% endblock %}
-    </div>
+    {% if request.user.is_authenticated %}
+      <div class="col-md-3 col-md-offset-1" id="portlet-column">
+        {% block portlets %}
+          <div class="portlet">
+            <header>Suggestions?</header>
+            <p>Are there resources you'd like to see?
+              <a href="/suggestions/">Tell us!</a>
+            </p>
+          </div>
+        {% endblock %}
+      </div>
+    {% endif %}
   </div>
 
 </div>
@@ -124,7 +142,7 @@
 {% block extra_js %}{% endblock extra_js %}
 
 <div id="footer" class="container">
-  <span>Copyright &copy;2014 by <a href="http://sfsi.org">San Franciso Sex Information</a>.</span>
+  <span>Copyright &copy;2014 by <a href="http://sfsi.org">San Francisco Sex Information</a>.</span>
   <span>Some material used under educational exemptions.</span>
   <span>Site design by <a href="http://joelburton.com">Joel Burton</a>.</span>
 </div>

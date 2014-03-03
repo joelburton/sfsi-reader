@@ -2,7 +2,7 @@
 
 from django.contrib import admin
 
-from .models import Day, Topic, Resource, make_published, make_private
+from .models import Day, Topic, Resource, make_published, make_private, Suggestion
 from .forms import ResourceForm, TopicInlineForm
 
 
@@ -115,6 +115,15 @@ class ResourceAdmin(admin.ModelAdmin):
     form = ResourceForm
 
 
+class SuggestionAdmin(admin.ModelAdmin):
+    """Suggestion administrative pages."""
+
+    readonly_fields = ['created']
+    list_display = ('title', 'description', 'created', 'name')
+    search_fields = ('title', 'description', 'name', 'email')
+
+
 admin.site.register(Day, DayAdmin)
 admin.site.register(Topic, TopicAdmin)
 admin.site.register(Resource, ResourceAdmin)
+admin.site.register(Suggestion, SuggestionAdmin)

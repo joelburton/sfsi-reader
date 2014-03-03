@@ -2,13 +2,10 @@
 Forms related to resources.
 """
 
-import urllib2
-
 from django import forms
 from django.utils.text import slugify
 
 from .models import Resource, Topic, Suggestion
-from .pdfconvert import convert_pdf_to_txt
 
 
 class TopicInlineForm(forms.ModelForm):
@@ -36,32 +33,9 @@ class ResourceForm(forms.ModelForm):
 
     def save(self, commit=True):
         if 'file' in self.changed_data:
-            file = self.cleaned_data['file']
-            if file:
-                self.instance.file_mimetype = file.content_type
-                self.instance.file_size = file.size
-                if file.content_type.endswith('/pdf'):
-                    try:
-                        self.instance.body = convert_pdf_to_txt(file)
-                    except Exception:
-                        # I'm uncertain what errors the converter might throw, but it's better to
-                        # allow unread PDFs than raise errors on conversion, so we'll be a little
-                        # overly broad here.
-                        self.instance.body = ''
-                else:
-                    self.instance.body = ''
-            else:
-                # Switched from file-based to URL-based, clear out this stuff
-                self.instance.file_size = 0
-                self.instance.file_mimetype = ''
-        if 'link' in self.changed_data and self.cleaned_data['link']:
-            try:
-                http_obj = urllib2.urlopen(self.cleaned_data['link'], timeout=10)
-                self.instance.body = http_obj.read()
-            except urllib2.URLError:
-                # Again, better to get something than nothing
-                self.instance.body = ''
-
+            self.instance.index_file(self.cleaned_data['file'])
+        if 'link' in self.changed_data:
+            self.instance.index_link(self.cleaned_data['link'])
         return forms.ModelForm.save(self, commit)
 
     class Meta:
@@ -72,7 +46,8 @@ class SuggestionForm(forms.ModelForm):
     """Suggestion form."""
 
     topic = forms.ChoiceField(
-        choices=[('', '(select topic you think this would fall into')]
+        choices=[('', '(select topic for resource'), ('other', '(Other)')],
+        required=True,
     )
 
     def __init__(self, *args, **kwargs):
@@ -84,4 +59,3 @@ class SuggestionForm(forms.ModelForm):
 
     class Meta:
         model = Suggestion
-        fields = ['title', 'description', 'topic', 'name', 'email']

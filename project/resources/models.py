@@ -1,6 +1,7 @@
 """Models related to resources."""
 
 from __future__ import unicode_literals
+import urllib2
 
 from django.core.exceptions import ValidationError
 from django.db import models
@@ -11,6 +12,7 @@ from django.utils.text import slugify
 from docutils.parsers.rst.directives.body import Topic
 
 from model_utils.models import TimeStampedModel, StatusModel
+from resources.pdfconvert import convert_pdf_to_txt
 
 
 def make_published(modeladmin, request, queryset):
@@ -230,6 +232,38 @@ class Resource(MetadataMixin):
 
         return super(Resource, self).clean()
 
+    def index_file(self, file):
+        """Read contents of file and update metadata."""
+
+        if file:
+            self.instance.file_mimetype = file.content_type
+            self.instance.file_size = file.size
+            if file.content_type.endswith('/pdf'):
+                try:
+                    self.instance.body = convert_pdf_to_txt(file)
+                except Exception:
+                    # I'm uncertain what errors the converter might throw, but it's better to
+                    # allow unread PDFs than raise errors on conversion, so we'll be a little
+                    # overly broad here.
+                    self.instance.body = ''
+            else:
+                self.instance.body = ''
+        else:
+            # Switched from file-based to URL-based, clear out this stuff
+            self.instance.file_size = 0
+            self.instance.file_mimetype = ''
+
+    def index_link(self, link):
+        """Read contents of link and update metadata."""
+
+        if link:
+            try:
+                http_obj = urllib2.urlopen(self.cleaned_data['link'], timeout=10)
+                self.instance.body = http_obj.read()
+            except urllib2.URLError:
+                # Again, better to get something than nothing
+                self.instance.body = ''
+
 
 ##################################################################################################
 
@@ -239,23 +273,50 @@ class Suggestion(TimeStampedModel):
     """
 
     title = models.CharField(
-        max_length=70
+        max_length=70,
+        verbose_name='subject',
     )
 
     description = models.TextField(
+        help_text='Describe the suggested resource.',
+        blank=True,
     )
 
     topic = models.CharField(
         max_length=100,
+        blank=True,
+    )
+
+    # We don't want to confuse people who paste an invalid URL, so let's be very forgiving and
+    # use a CharField here
+    link = models.CharField(
+        help_text='For web-based resources, please paste the URL here.',
+        blank=True,
+        max_length=200,
+    )
+
+    file = models.FileField(
+        help_text='For file-based resources, please upload the file here.',
+        upload_to='suggestions',
+        blank=True,
     )
 
     name = models.CharField(
         max_length=100,
+        verbose_name='your name',
+        blank=True,
+        help_text="If you'd like your submission to be confidential, you can clear this."
     )
 
     email = models.EmailField(
+        verbose_name='your email',
+        blank=True,
+        help_text="If you'd like your submission to be confidential, you can clear this.",
     )
 
     class Meta:
         ordering = ['-created']
+
+    def __unicode__(self):
+        return self.title
 

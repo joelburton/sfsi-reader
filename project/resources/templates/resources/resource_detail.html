@@ -1,7 +1,11 @@
 {% extends "base.html" %}
+{% load comments %}
+
+{% block title %}{{ resource.title }}{% endblock %}
 
 {% block content %}
 
+  <h1>{{ resource.title }}</h1>
   <p class="lead">{{ resource.description }}</p>
 
   {% if resource.link %}
@@ -17,6 +21,24 @@
 {% endblock %}
 
 {% block portlets %}
+  <div class="portlet">
+    <header>Comments</header>
+    {% render_comment_list for resource %}
+
+      {% get_comment_form for resource as form %}
+      <form action="{% comment_form_target %}" method="POST">
+        {% csrf_token %}
+        {{ form.comment }}
+        {{ form.content_type }}
+        {{ form.object_pk }}
+        {{ form.timestamp }}
+        {{ form.security_hash }}
+        <input type="hidden" name="next" value="{{ resource.get_absolute_url }}"/>
+        <input type="submit" class="btn btn-xs btn-primary" value="Add comment" id="id_submit"/>
+      </form>
+
+  </div>
+
   <div class="portlet">
     <header>Resources in {{ resource.topic.title }}</header>
     <ul>

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block title %}{% block head_title %}{% endblock %}{% endblock %}
+
+{% block content %}
+
+<ul class="nav nav-tabs">
+  <li class="{% block account_nav_profile %}{% endblock %}">
+    <a href="{% url 'account_profile' %}">
+      <i class="fa fa-user"></i>
+      Profile</a>
+  </li>
+  <li class="{% block account_nav_avatar %}{% endblock %}">
+    <a href="{% url 'account_avatar' %}">
+      <i class="fa fa-camera"></i>
+      Photo</a>
+  </li>
+  <li class="{% block account_nav_change_password %}{% endblock %}">
+    <a href="{% url 'account_change_password' %}">
+      <i class="fa fa-key"></i>
+      Password</a>
+  </li>
+</ul>
+
+<div class="account-management">
+{% block account_content %}
+{% endblock %}
+  </div>
+
+{% endblock %}
+

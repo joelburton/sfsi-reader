@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Members{% endblock %}
+
+{% block content %}
+<h1>Members</h1>
+<p class="lead">Looking to connect with your fellow students?</p>
+
+  {% for semester in semesters %}
+    <h2>{{ semester.title }}</h2>
+    <ul>
+    {%  for student in semester.students %}
+      <li><a href="{{ student.get_absolute_url }}">{{ student.get_full_name }}</a></li>
+      {% endfor %}
+    </ul>
+  {% endfor %}
+{% endblock %}

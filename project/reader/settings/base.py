@@ -51,7 +51,7 @@ DATABASES = {
         'PASSWORD': '',
         'HOST': '',
         'PORT': '',
-    }
+        }
 }
 ########## END DATABASE CONFIGURATION
 
@@ -194,11 +194,14 @@ DJANGO_APPS = (
     # 'django.contrib.admindocs',
 
     'bootstrapform',
+    'django_comments',
+    'avatar',
 )
 
 # Apps specific for this project go here.
 LOCAL_APPS = (
     'resources',
+    'members',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -233,8 +236,8 @@ LOGGING = {
             'handlers': ['mail_admins'],
             'level': 'ERROR',
             'propagate': True,
-        },
-    }
+            },
+        }
 }
 ########## END LOGGING CONFIGURATION
 
@@ -257,3 +260,72 @@ SOUTH_TESTS_MIGRATE = False
 
 
 GRAPPELLI_ADMIN_TITLE = 'SFSI Reader Administration'
+
+
+########### ALL AUTH CONFIGURATION
+
+TEMPLATE_CONTEXT_PROCESSORS += (
+    "allauth.account.context_processors.account",
+    "allauth.socialaccount.context_processors.socialaccount",
+)
+
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+
+INSTALLED_APPS += (
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'avatar',
+)
+
+##################################################################################################
+# Messages
+#
+# The messages app pushes out alerts with a "tag" for the severity of the alert. Unfortunately,
+# their tag for errors is "error", which doesn't match a Bootstrap CSS style. So let's re-map
+# this severity level to "danger", which does match a Bootstrap CSS style.
+
+MESSAGE_TAGS = {40: 'danger'}
+
+
+
+# Joel's MacBook can timeout when at a cafe with incorrectly-set DNS settings, as it doesn't know
+# the hostname of the laptop. So let's hack this in:
+
+from django.core.mail.utils import DNS_NAME
+
+DNS_NAME._fqdn = "localhost"
+
+
+
+MIDDLEWARE_CLASSES += (
+    'reader.middleware.LoginRequiredMiddleware',
+)
+
+ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+
+# We require that account have an email and it must be verified before they can use our site
+ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
+
+# We have a custom user model and therefore a custom registration form
+AUTH_USER_MODEL = "members.Member"
+# ACCOUNT_SIGNUP_FORM_CLASS = "members.forms.MemberRegistrationForm"
+
+# If users use the "remember me" feature, so they stay logged in after they close their browser,
+# we keep their session around for 2 weeks
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 14
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+
+
+##################################################################################################
+# User avatars
+#
+# We use django-avatar for this. We fall back to using Gravatar and have a Gravatar fallback, of
+# our grey-user icon.
+
+AVATAR_STORAGE_DIR = "media/avatars"
+AUTO_GENERATE_AVATAR_SIZES = (20, 250,)

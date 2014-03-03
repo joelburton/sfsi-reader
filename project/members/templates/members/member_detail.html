@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load avatar_tags %}
+
+{% block title %}{{ member.get_full_name }}{% endblock %}
+
+{% block content %}
+
+  <div class="row">
+
+    {# Photo column should appear small and on right, except on XS devices, where it is first #}
+    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 col-sm-push-8 col-md-push-9 col-lg-push-9">
+      <img src="{% avatar_url request.user 250 %}" class="img-responsive"/>
+
+      {% if editable %}
+        <a class='edit-avatar btn btn-block btn-primary btn-xs'
+           href="{% url 'account_avatar' %}">
+          Change profile photo
+        </a>
+      {% endif %}
+    </div>
+
+    {# Body column should appear widger and left, except on XS where it runs full and is below #}
+    <div class="col-xs-12 col-sm-8 col-md-9 col-lg-9 col-sm-pull-4 col-md-pull-3 col-lg-pull-3">
+      <h1>{{ member.get_full_name }}</h1>
+
+      <p class="lead">{{ member.description }}</p>
+
+      <div>{{ member.body | safe }}</div>
+
+      {% if editable %}
+        <a class='btn btn-primary btn-xs' href="{% url 'account_profile' %}">
+          Edit your profile
+        </a>
+      {% endif %}
+    </div>
+
+  </div>
+{% endblock %}

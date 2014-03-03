@@ -13,7 +13,6 @@ NAV = [
     ('Topics', '/topics/', 'list-alt'),
     ('Key Resources', '/key-resources/', 'star'),
     ('Required', '/required/', 'exclamation-sign'),
-    ('More Reading', '/more/', 'globe'),
     ]
 
 
