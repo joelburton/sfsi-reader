@@ -13,8 +13,6 @@ Contents:
 
    install
    deploy
-   tests
-
 
 
 Indices and tables
