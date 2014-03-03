@@ -1,0 +1,183 @@
+body {
+  padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+}
+
+.navbar {
+  font-size: 100%;
+
+  @media (max-width: 992px) {
+    font-size: 90%;
+  }
+
+  .navbar-brand {
+    font-weight: 400;
+    font-size: 130%;
+
+    @media (max-width: 992px) {
+      font-size: 110%;
+    }
+
+    b {
+      font-weight: 700;
+    }
+  }
+
+  &.navbar-inverse {
+    background-color: black;
+  }
+
+  li.active a {
+    background-color: #333 !important;
+  }
+
+  li a:hover {
+    background-color: red !important;
+    .glyphicon { color: white; }
+  }
+
+  .search-input {
+    border-radius: 30px;
+    margin-top: 2px;
+  }
+
+}
+
+
+.navbar-inverse {
+  background-color: black;
+}
+
+
+.brand-sf {
+  color: white;
+}
+
+.brand-si {
+  color: red;
+}
+
+#footer {
+  margin-top: 2em;
+  margin-bottom: 1em;
+  font-size: 80%;
+
+  @media (max-width: 768px) {
+    span {
+      display: block;
+    }
+  }
+}
+
+
+
+a {
+  color: red;
+}
+
+.glyphicon-star {
+  color: #cc0;
+}
+
+.glyphicon-exclamation-sign {
+  color: #f33;
+}
+
+.glyphicon-globe {
+  color: blue;
+}
+
+.glyphicon-calendar {
+  color: green;
+}
+
+.glyphicon-list-alt {
+  color: orange;
+}
+
+
+#homepage {
+
+  .homepage-nav {
+
+    margin-top: 3em;
+
+    a {
+      color: inherit;
+
+      &:hover {
+        text-decoration: none;
+        color: red;
+      }
+    }
+  }
+
+  .questions {
+    margin-top: 3em;
+    text-transform: uppercase;
+    font-size: 120%;
+    font-weight: bold;
+  }
+}
+
+.breadcrumb a {
+  color: black;
+  font-weight: bold;
+}
+
+#topic-list {
+  color: #999;
+}
+
+dt {
+  margin-top: 1em;
+}
+
+dd {
+  color: #333;
+}
+
+.btn-primary {
+  background-color: red;
+  border-color: darkred;
+}
+
+#search-results {
+  small { color: #666; }
+}
+
+#search-results form {
+  text-align: center;
+
+  input[type='text'] {
+    border-radius: 10px;
+  }
+
+}
+
+#resource-body {
+  display: none;
+  border: solid 1px #333;
+  padding: 1em;
+}
+
+.portlet {
+  border-top: solid 1px #ccc;
+  padding-top: 0.5em;
+  margin-bottom: 2em;
+  font-size: 90%;
+
+  header {
+    text-transform: uppercase;
+    font-size: 90%;
+    font-weight: 600;
+    margin-bottom: 1em;
+  }
+
+  ul {
+    padding: 0;
+  }
+
+  li {
+    list-style: none;
+  }
+}

@@ -1,0 +1,82 @@
+[
+    {
+        "model": "resources.Day",
+        "pk": 1,
+        "fields": {
+            "slug": "day-1",
+            "title": "Day 1",
+            "description": "Intro to SFSI-style Sex Education, Day 1.",
+            "status": "published"
+        }
+    },
+    {
+        "model": "resources.Day",
+        "pk": 2,
+        "fields": {
+            "slug": "day-2",
+            "title": "Day 2",
+            "description": "Intro to SFSI-style Sex Education, Day 2.",
+            "status": "published"
+        }
+    },
+    {
+        "model": "resources.Day",
+        "pk": 3,
+        "fields": {
+            "slug": "day-3",
+            "title": "Day 3",
+            "description": "Sex and Medical Science, Day 1.",
+            "status": "published"
+        }
+    },
+    {
+        "model": "resources.Day",
+        "pk": 4,
+        "fields": {
+            "slug": "day-4",
+            "title": "Day 4",
+            "description": "Sex and Medical Science, Day 2.",
+            "status": "published"
+        }
+    },
+    {
+        "model": "resources.Day",
+        "pk": 5,
+        "fields": {
+            "slug": "day-5",
+            "title": "Day 5",
+            "description": "Sex and Social Science, Day 1.",
+            "status": "published"
+        }
+    },
+    {
+        "model": "resources.Day",
+        "pk": 6,
+        "fields": {
+            "slug": "day-6",
+            "title": "Day 6",
+            "description": "Sex and Social Science, Day 2.",
+            "status": "published"
+        }
+    },
+    {
+        "model": "resources.Day",
+        "pk": 7,
+        "fields": {
+            "slug": "day-7",
+            "title": "Day 7",
+            "description": "Sex: All the rest, Day 1.",
+            "status": "published"
+        }
+    },
+    {
+        "model": "resources.Day",
+        "pk": 8,
+        "fields": {
+            "slug": "day-8",
+            "title": "Day 8",
+            "description": "Sex: All the Rest, Day 2.",
+            "status": "published"
+        }
+    }
+]

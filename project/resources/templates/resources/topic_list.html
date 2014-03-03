@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Topics{% endblock %}
+{% block page_title %}Topics{% endblock %}
+
+{% block content %}
+  <div id="topic-list">
+    <p class="lead">All of our training topics.</p>
+
+    <dl>
+      {% for topic in topic_list %}
+        <dt>
+          <a href="{{ topic.get_absolute_url }}">{{ topic.title }}</a>
+          <small>&mdash; {{ topic.day.title }}</small>
+        </dt>
+        <dd>
+          {{ topic.description }}
+        </dd>
+      {% endfor %}
+    </dl>
+  </div>
+{% endblock %}

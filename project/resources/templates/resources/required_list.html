@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Required Resources{% endblock %}
+{% block page_title %}Required Resources{% endblock %}
+
+{% block content %}
+
+  <p class="lead">Required reading for our section on STDs.</p>
+
+  <ul>
+    {% for resource in resource_list %}
+      <li>
+        {% if resource.key %}<span class="glyphicon glyphicon-star"></span>{% endif %}
+        <span class="glyphicon glyphicon-exclamation-sign"></span>
+        <a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a>
+        {{ resource.description }}
+      </li>
+    {% endfor %}
+  </ul>
+
+{% endblock %}

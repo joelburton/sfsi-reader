@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <p class="lead">{{ day.description }}</p>
+
+  <dl>
+    {% for topic in topics %}
+      <dt><a href="{{ topic.get_absolute_url }}">{{ topic.title }}</a></dt>
+      <dd>{{ topic.description }}</dd>
+    {% endfor %}
+  </dl>
+
+{% endblock %}

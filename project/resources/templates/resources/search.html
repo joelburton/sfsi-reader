@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Search{% if q %} Results: {{ q }}{% endif %}{% endblock %}
+{% block page_title %}Search{% if q %} Results{% endif %}{% endblock %}
+
+{% block content %}
+  <div id="search-results">
+
+    <form role="form" class="form-horizontal">
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-2">
+          <input type="text"
+                 name="q"
+                 class="form-control input-lg"
+                 placeholder="Search"
+                 value="{{ q }}" />
+        </div>
+        <div class="col-sm-2">
+          <button type="submit" class="btn btn-primary btn-sm btn-block">Search</button>
+        </div>
+      </div>
+    </form>
+
+    {% if topic_results or resource_results %}
+
+      {% if topic_results %}
+        <h2>Topics</h2>
+        <dl>
+          {% for item in topic_results %}
+            <dt><a href="{{ item.1 }}">{{ item.0 }}</a></dt>
+            <dd>{{ item.2|safe }}
+              <small>{{ item.3 }}</small>
+            </dd>
+          {% endfor %}
+        </dl>
+      {% endif %}
+
+      {% if resource_results %}
+        <h2>Resources</h2>
+        <dl>
+          {% for item in resource_results %}
+            <dt><a href="{{ item.1 }}">{{ item.0 }}</a></dt>
+            <dd>{{ item.2|safe }}
+              <small>{{ item.3 }}</small>
+            </dd>
+          {% endfor %}
+        </dl>
+      {% endif %}
+
+    {% else %}
+
+      {% if q %}
+        {# If they tried to search for something but failed, let them know. #}
+        <p class="text-muted">Sorry, no results were found for your search.</p>
+      {% endif %}
+
+    {% endif %}
+
+  </div>
+
+{% endblock %}

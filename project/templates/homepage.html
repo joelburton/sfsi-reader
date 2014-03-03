@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+{% block page_title %}Welcome to the SFSI Reader{% endblock %}
+
+{% block content %}
+  <div id="homepage">
+    <p class="lead">Our website for the Spring 2014 SFSI Sex Educator Training.</p>
+
+    <div class="homepage-nav">
+      <h2>
+        <a href="/days/">
+          <span class="glyphicon glyphicon-calendar"></span> Browse by Day
+        </a>
+      </h2>
+
+      <h2>
+        <a href="/topics/">
+          <span class="glyphicon glyphicon-list-alt"></span> Browse by Topic
+        </a>
+      </h2>
+
+      <h2>
+        <a href="/key-resources/">
+          <span class="glyphicon glyphicon-star"></span> View all Key Resources
+        </a>
+      </h2>
+
+      <h2>
+        <a href="/required/">
+          <span class="glyphicon glyphicon-exclamation-sign"></span> View all Required Reading
+        </a>
+      </h2>
+
+      <h2>
+        <a href="/more/">
+          <span class="glyphicon glyphicon-globe"></span> Directory of Additional Resources</h2>
+      </a>
+      </h2>
+    </div>
+
+    <h2 class="questions">Questions or Suggestions?</h2>
+    <p>
+      If you have problems accessing items in the reader, or have other technical difficulties,
+      please contact <a href="mailto:joel@joelburton.com">Joel</a>.
+    </p>
+
+    <p>If you have suggestions about items you think should be considered for inclusion in the reader,
+      please use our <a href="/suggestions/">Suggestion Form</a>.</p>
+  </div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Training Days{% endblock %}
+{% block page_title %}Training Days{% endblock %}
+
+{% block content %}
+
+  <p class="lead">Our training, organized by day.</p>
+
+  <dl>
+    {% for day in day_list %}
+      <dt>
+        <a href="{{ day.get_absolute_url }}">{{ day.title }}</a>
+      </dt>
+      <dd>
+        {{ day.description }}
+      </dd>
+    {% endfor %}
+  </dl>
+{% endblock %}

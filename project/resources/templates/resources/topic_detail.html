@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <p class="lead">{{ topic.description }}</p>
+
+  <dl>
+    {% for resource in resources %}
+      <dt>
+        {% if resource.key %}<span class="glyphicon glyphicon-star"></span>{% endif %}
+        {% if resource.required %}
+          <span class="glyphicon glyphicon-exclamation-sign"></span>
+        {% endif %}
+        <a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a>
+      </dt>
+      <dd>
+        {{ resource.description }}
+      </dd>
+    {% endfor %}
+  </dl>
+
+{% endblock %}
+
+
+
+{% block portlets %}
+  <div class="portlet">
+    <header>Topics in {{ topic.day.title }}</header>
+    <ul>
+      {% for topic in topics %}
+        <li><a href="{{ topic.get_absolute_url }}">{{ topic.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  {{ block.super }}
+
+{% endblock %}

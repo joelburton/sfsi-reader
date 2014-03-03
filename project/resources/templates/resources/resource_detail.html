@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <p class="lead">{{ resource.description }}</p>
+
+  {% if resource.link %}
+  <p>Link: <a href="{{ resource.link }}">{{ resource.link }}</a></p>
+  {% endif %}
+
+  {% if resource.file %}
+    <p>File: <a href="{{ resource.file.url }}">{{ resource.title }}</a>
+    <small>{{ resource.file_mimetype }}, {{ resource.file_size }} bytes</small>
+    </p>
+  {% endif %}
+
+{% endblock %}
+
+{% block portlets %}
+  <div class="portlet">
+    <header>Resources in {{ resource.topic.title }}</header>
+    <ul>
+      {% for resource in resources %}
+        <li><a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  {{ block.super }}
+
+{% endblock %}
