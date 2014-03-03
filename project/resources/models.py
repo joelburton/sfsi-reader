@@ -176,7 +176,7 @@ class Resource(MetadataMixin):
         )
 
     file_mimetype = models.CharField(
-        max_length=30,
+        max_length=255,
         blank=True,
         )
 
