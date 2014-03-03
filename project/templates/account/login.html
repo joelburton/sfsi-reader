@@ -9,6 +9,7 @@
 {% block content %}
 
 <h1>{% trans "Sign In" %}</h1>
+  <p class="lead">To protect the confidentiality of our students, you must log in.</p>
 
 <form class="login" method="POST" action="{% url 'account_login' %}">
   {% csrf_token %}
