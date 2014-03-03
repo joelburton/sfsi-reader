@@ -31,7 +31,7 @@ You'll probably want to make a superuser for yourself::
 
 And then pull in the fixture data::
 
-  $ python project/mange.py loaddata days topics
+  $ python project/manage.py loaddata days topics
 
 Then you should be able to run the server. Before the site makes much sense, you'll want to
 create some resources and students, but you can do that via the Django admin interface.
