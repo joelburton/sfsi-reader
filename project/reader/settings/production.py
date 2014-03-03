@@ -21,7 +21,7 @@ def get_env_setting(setting):
 
 ########## HOST CONFIGURATION
 # See: https://docs.djangoproject.com/en/1.5/releases/1.5/#allowed-hosts-required-in-production
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1','reader.joelburton.com', 'reader.sfsi.org']
 ########## END HOST CONFIGURATION
 
 ########## EMAIL CONFIGURATION
@@ -55,8 +55,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'reader',
-        'USER': 'joel',
-        'PASSWORD': '',
+        'USER': 'reader',
+        'PASSWORD': get_env_setting('PG_PASSWORD'),
         'HOST': 'localhost',
         'PORT': '',
         'CONN_MAX_AGE': None,

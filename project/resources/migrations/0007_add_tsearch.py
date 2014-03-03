@@ -25,9 +25,9 @@ class Migration(SchemaMigration):
         db.execute("""CREATE INDEX resources_topic_search ON resources_topic USING GIN ( "search" )""")
 
         db.execute("ALTER TABLE resources_resource ADD search tsvector")
-        db.add_column(u'resources_resource', 'body',
-                      self.gf('django.db.models.fields.TextField')(default=''),
-                      keep_default=True)
+        #db.add_column(u'resources_resource', 'body',
+        #              self.gf('django.db.models.fields.TextField')(default=''),
+        #              keep_default=True)
         db.execute("""
         CREATE FUNCTION resource_search_trigger() RETURNS trigger AS $$
         begin
