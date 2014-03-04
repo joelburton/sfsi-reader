@@ -18,6 +18,7 @@ class HomepageView(generic.TemplateView):
         data = super(HomepageView, self).get_context_data()
 
         start_date = datetime.datetime.now() - datetime.timedelta(days=30)
+        data['show_students'] = self.request.user.semesters.exists()
         data['comment_list'] = Comment.objects\
                                    .order_by("-submit_date")[:4]
         data['latest_resources'] = Resource.objects\
