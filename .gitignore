@@ -6,3 +6,4 @@
 /media/*
 /static/*
 /start-server.sh
+/docs/_build
