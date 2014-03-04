@@ -86,9 +86,10 @@ class KeyListView(generic.ListView):
     model = Resource
 
     def get_queryset(self):
-        return Resource.objects.active().filter(key=True).only(
-            "title", "description", "id", "topic", "key", "required", "slug"
-        ).order_by('topic', 'title')
+        return Resource.objects.active().filter(key=True)\
+            .defer("body")\
+            .prefetch_related('topic', 'topic__day')\
+            .order_by('topic', 'title')
 
 
 class RequiredListView(generic.ListView):
@@ -98,9 +99,10 @@ class RequiredListView(generic.ListView):
     template_name = "resources/required_list.html"
 
     def get_queryset(self):
-        return Resource.objects.active().filter(required=True).only(
-            "title", "description", "id", "topic", "key", "required", "slug"
-        ).order_by('topic', 'title')
+        return Resource.objects.active().filter(required=True) \
+            .defer("body") \
+            .prefetch_related('topic', 'topic__day') \
+            .order_by('topic', 'title')
 
 
 class ResourceDetailView(generic.DetailView):

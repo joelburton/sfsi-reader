@@ -242,6 +242,7 @@ class Resource(MetadataMixin):
                 try:
                     self.body = convert_pdf_to_txt(file)
                 except Exception:
+                    raise
                     # I'm uncertain what errors the converter might throw, but it's better to
                     # allow unread PDFs than raise errors on conversion, so we'll be a little
                     # overly broad here.

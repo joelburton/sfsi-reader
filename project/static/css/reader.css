@@ -176,6 +176,7 @@ dd {
 }
 .portlet li {
   list-style: none;
+  margin-bottom: 0.5em;
 }
 #id_comment {
   height: 4.5em;

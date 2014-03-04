@@ -3,13 +3,16 @@ Utility for PDF conversion
 """
 
 from cStringIO import StringIO
+import subprocess
+import tempfile
 
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer.converter import TextConverter
 from pdfminer.layout import LAParams
 from pdfminer.pdfpage import PDFPage
 
-def convert_pdf_to_txt(fp):
+
+def py_convert_pdf_to_txt(fp):
     """Convert PDF file to text.
 
     :param fp: File pointer
@@ -18,6 +21,8 @@ def convert_pdf_to_txt(fp):
     We only convert the first 10 pages for performance and storage reasons; presumably, almost all
     search terms we might find in a document should appear in the first 10 pages, anyway.
     """
+
+    # Ugh, PDFminer is slow. Use this only if we need to!
 
     rsrcmgr = PDFResourceManager()
     retstr = StringIO()
@@ -36,3 +41,22 @@ def convert_pdf_to_txt(fp):
     str = retstr.getvalue()
     retstr.close()
     return str
+
+
+def convert_pdf_to_txt(fp):
+    """Convert PDF file to text.
+
+    :param fp: File pointer
+    :returns: Unicode string of first 30 pages of PDF
+
+    We only convert the first 30 pages for performance and storage reasons; presumably, almost all
+    search terms we might find in a document should appear in the first 10 pages, anyway.
+    """
+
+    temp_file = tempfile.NamedTemporaryFile(suffix='.pdf', delete=False)
+    fp.seek(0)
+    temp_file.write(fp.read())
+    name = temp_file.name
+    temp_file.close()
+    ret = subprocess.check_output(['pdftotext', '-l', '30', name, '-'])
+    return ret
