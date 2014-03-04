@@ -53,7 +53,7 @@ class MetadataMixin(TimeStampedModel, StatusModel):
     STATUS = [('published', 'Published'), ('private', 'Private')]
 
     title = models.CharField(
-        max_length=70
+        max_length=100
     )
 
     slug = models.SlugField()
@@ -232,37 +232,37 @@ class Resource(MetadataMixin):
 
         return super(Resource, self).clean()
 
-    def index_file(self, file):
+    def index_file(self, file, mimetype=None, size=None):
         """Read contents of file and update metadata."""
 
         if file:
-            self.instance.file_mimetype = file.content_type
-            self.instance.file_size = file.size
-            if file.content_type.endswith('/pdf'):
+            self.file_mimetype = mimetype if mimetype is not None else file.content_type
+            self.file_size = size if size is not None else file.size
+            if self.file_mimetype.endswith('/pdf'):
                 try:
-                    self.instance.body = convert_pdf_to_txt(file)
+                    self.body = convert_pdf_to_txt(file)
                 except Exception:
                     # I'm uncertain what errors the converter might throw, but it's better to
                     # allow unread PDFs than raise errors on conversion, so we'll be a little
                     # overly broad here.
-                    self.instance.body = ''
+                    self.body = ''
             else:
-                self.instance.body = ''
+                self.body = ''
         else:
             # Switched from file-based to URL-based, clear out this stuff
-            self.instance.file_size = 0
-            self.instance.file_mimetype = ''
+            self.file_size = 0
+            self.file_mimetype = ''
 
     def index_link(self, link):
         """Read contents of link and update metadata."""
 
         if link:
             try:
-                http_obj = urllib2.urlopen(self.cleaned_data['link'], timeout=10)
-                self.instance.body = http_obj.read()
-            except urllib2.URLError:
+                http_obj = urllib2.urlopen(link, timeout=10)
+                self.body = http_obj.read().decode('utf8')
+            except (urllib2.URLError, UnicodeDecodeError):
                 # Again, better to get something than nothing
-                self.instance.body = ''
+                self.body = ''
 
 
 ##################################################################################################

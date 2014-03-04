@@ -329,5 +329,5 @@ LOGIN_REDIRECT_URL = '/'
 # We use django-avatar for this. We fall back to using Gravatar and have a Gravatar fallback, of
 # our grey-user icon.
 
-AVATAR_STORAGE_DIR = "media/avatars"
+AVATAR_STORAGE_DIR = "avatars"
 AUTO_GENERATE_AVATAR_SIZES = (20, 250,)
