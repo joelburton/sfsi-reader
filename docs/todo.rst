@@ -1,0 +1,4 @@
+- logging on production
+- can't edit avatars on production
+- suggestion form doesn't work on prodcution (no email settings)
+- cannot add members via django admin -- very annoying
