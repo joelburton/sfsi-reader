@@ -3,23 +3,29 @@
 {% block title %}Key Resources{% endblock %}
 
 {% block content %}
+  <div id="key-resources">
+    <h1>Key Resources</h1>
+    <p class="lead">
+      Our collections of the resources we think are most critical for sex educators.
+    </p>
 
-  <h1>Key Resources</h1>
-  <p class="lead">
-    Our collections of the resources we think are most critical for sex educators.
-  </p>
-
-  <ul>
-    {% for resource in resource_list %}
-      <li>
-        <span class="glyphicon glyphicon-star"></span>
-        {% if resource.required %}
-          <span class="glyphicon glyphicon-exclamation-sign"></span>
-        {% endif %}
-        <a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a>
-        {{ resource.description }}
-      </li>
+    {% regroup resource_list by topic as topic_list %}
+    {% for topic in topic_list %}
+      <h2>{{ topic.grouper }}</h2>
+      <dl>
+        {% for resource in topic.list %}
+          <dt>
+            <span class="glyphicon glyphicon-star"></span>
+            {% if resource.required %}
+              <span class="glyphicon glyphicon-exclamation-sign"></span>
+            {% endif %}
+            <a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a>
+          </dt>
+          <dd>
+            {{ resource.description }}
+          </dd>
+        {% endfor %}
+      </dl>
     {% endfor %}
-  </ul>
-
+  </div>
 {% endblock %}

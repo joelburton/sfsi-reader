@@ -3,19 +3,28 @@
 {% block title %}Required Resources{% endblock %}
 
 {% block content %}
+  <div id="required-resources">
 
-  <h1>Required Resources</h1>
-  <p class="lead">Required reading for our section on STDs.</p>
+    <h1>Required Resources</h1>
+    <p class="lead">Required reading for our section on STDs.</p>
 
-  <ul>
-    {% for resource in resource_list %}
-      <li>
-        {% if resource.key %}<span class="glyphicon glyphicon-star"></span>{% endif %}
-        <span class="glyphicon glyphicon-exclamation-sign"></span>
-        <a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a>
-        {{ resource.description }}
-      </li>
+    {% regroup resource_list by topic as topic_list %}
+    {% for topic in topic_list %}
+      <h2>{{ topic.grouper }}</h2>
+
+      <dl>
+        {% for resource in topic.list %}
+          <dt>
+            {% if resource.key %}<span class="glyphicon glyphicon-star"></span>{% endif %}
+            <span class="glyphicon glyphicon-exclamation-sign"></span>
+            <a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a>
+          </dt>
+          <dd>
+            {{ resource.description }}
+          </dd>
+        {% endfor %}
+      </dl>
     {% endfor %}
-  </ul>
+  </div>
 
 {% endblock %}

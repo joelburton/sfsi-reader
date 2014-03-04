@@ -24,24 +24,26 @@
     {% if topic_results or resource_results %}
 
       {% if topic_results %}
-        <h2>Topics</h2>
+        <h2>{{ topic_results|length }} Topic{{ topic_results|pluralize }}</h2>
         <dl>
           {% for item in topic_results %}
             <dt><a href="{{ item.1 }}">{{ item.0 }}</a></dt>
-            <dd>{{ item.2|safe }}
-              <small>{{ item.3 }}</small>
+            <dd>{{ item.2 }}</dd>
+            <dd class="highlight">{{ item.3|safe }}
+              <small>{{ item.4 }}</small>
             </dd>
           {% endfor %}
         </dl>
       {% endif %}
 
       {% if resource_results %}
-        <h2>Resources</h2>
+        <h2>{{ resource_results|length }} Resource{{ resource_results|pluralize }}</h2>
         <dl>
           {% for item in resource_results %}
             <dt><a href="{{ item.1 }}">{{ item.0 }}</a></dt>
-            <dd>{{ item.2|safe }}
-              <small>{{ item.3 }}</small>
+            <dd>{{ item.2 }}</dd>
+            <dd class="highlight">{{ item.3|safe }}
+              <small>{{ item.4 }}</small>
             </dd>
           {% endfor %}
         </dl>

@@ -88,7 +88,7 @@ class KeyListView(generic.ListView):
     def get_queryset(self):
         return Resource.objects.active().filter(key=True).only(
             "title", "description", "id", "topic", "key", "required", "slug"
-        )
+        ).order_by('topic', 'title')
 
 
 class RequiredListView(generic.ListView):
@@ -100,7 +100,7 @@ class RequiredListView(generic.ListView):
     def get_queryset(self):
         return Resource.objects.active().filter(required=True).only(
             "title", "description", "id", "topic", "key", "required", "slug"
-        )
+        ).order_by('topic', 'title')
 
 
 class ResourceDetailView(generic.DetailView):
@@ -170,6 +170,7 @@ class SearchView(generic.TemplateView):
             cursor.execute(
                 "SELECT title,"
                 "       absolute_url,"
+                "       description,"
                 "       ts_headline('english', title || ' ' || description, sterm) AS highlight,"
                 "       ts_rank_cd(search, sterm) AS rank"
                 " FROM resources_topic,"
@@ -183,6 +184,7 @@ class SearchView(generic.TemplateView):
             cursor.execute(
                 "SELECT title,"
                 "       absolute_url,"
+                "       description,"
                 "       ts_headline('english', title || ' ' || description || ' ' || file || "
                 "                              ' ' || link || ' ' || body, sterm) AS highlight,"
                 "       ts_rank_cd(search, sterm) AS rank"

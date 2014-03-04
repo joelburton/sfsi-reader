@@ -137,7 +137,12 @@ dd {
   background-color: red;
   border-color: darkred;
 }
-#search-results small {
+#search-results .highlight {
+  color: #999;
+  font-size: 85%;
+  margin-top: 0.5em;
+}
+#search-results .highlight b {
   color: #666;
 }
 #search-results form {
@@ -186,4 +191,9 @@ dd {
 }
 .messages {
   font-weight: 500;
+}
+#key-resources h2,
+#required-resources h2 {
+  font-size: 150%;
+  margin-top: 2em;
 }
