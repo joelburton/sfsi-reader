@@ -196,6 +196,7 @@ DJANGO_APPS = (
     'bootstrapform',
     'django_comments',
     'avatar',
+    'django_extensions',
 )
 
 # Apps specific for this project go here.
