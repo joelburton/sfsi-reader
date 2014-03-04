@@ -17,7 +17,10 @@ class Semester(models.Model):
 class Member(AbstractUser):
     """Site member."""
 
-    semesters = models.ManyToManyField(Semester)
+    semesters = models.ManyToManyField(
+        Semester,
+        blank=True,
+    )
 
     description = models.CharField(
         max_length=250,
