@@ -33,7 +33,7 @@ class DayDetailView(generic.DetailView):
         data = super(DayDetailView, self).get_context_data(**kwargs)
         data['topics'] = data['day'].topic_set.active().only(
             "title", "description", "id", "slug", "day"
-        )
+        ).order_by('position')
         return data
 
 
@@ -64,7 +64,7 @@ class TopicDetailView(generic.DetailView):
         return get_object_or_404(
             Topic.objects.active().only("title", "description", "id", "slug", "day"),
             slug=self.kwargs['slug'],
-            day_slug=self.kwargs['day_slug'],
+            day__slug=self.kwargs['day_slug'],
             )
 
     def get_context_data(self, **kwargs):
