@@ -19,7 +19,7 @@ class MemberListView(generic.TemplateView):
                 {'title': semester.title,
                  'students': [m
                               for m
-                              in Member.objects.filter(semesters=semester, visible=True)],
+                              in Member.objects.filter(semesters=semester, visible=True).order_by('last_name', 'first_name')],
                 }
             )
         return data
