@@ -36,7 +36,15 @@ class MemberDetailView(generic.DetailView):
 
     def get_queryset(self):
         user_semesters = self.request.user.semesters.all()
-        return Member.objects.filter(semesters=user_semesters, visible=True)
+        if self.kwargs['slug'] == self.request.user.username:
+            return Member.objects.filter(username=self.request.user.username)
+        else:
+            return Member.objects.filter(semesters=user_semesters, visible=True)
+
+    def get_context_data(self, **kwargs):
+        context = super(MemberDetailView, self).get_context_data(**kwargs)
+        context['editable'] = self.kwargs['slug'] == self.request.user.username
+        return context
 
 
 class ProfileUpdateView(UpdateView):
