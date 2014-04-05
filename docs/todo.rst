@@ -1,3 +1,5 @@
 - logging on production
-- suggestion form doesn't work on production (no email settings)
 - cannot add members via django admin -- very annoying
+- add "more resources" doc
+- fix CSS blue colors on hovers, button clicks, etc
+- make comments have a link to piece of content

@@ -1,10 +1,25 @@
 <dl id="comments">
   {% for comment in comment_list %}
     <dt id="c{{ comment.id }}">
-        {{ comment.submit_date|date:'M j, Y' }} &ndash; {{ comment.name }}
+      {{ comment.submit_date|date:'M j, Y' }} &ndash;
+      {% if comment.user.visible %}
+        <a href="{% url 'member.detail' comment.user %}">{{ comment.name }}</a>
+      {% else %}
+        {{ comment.name }}
+      {% endif %}
     </dt>
     <dd>
-        <p>{{ comment.comment }}</p>
+      <p>
+        {% if show_comment_title %}
+          <small>
+            On <a
+              href="{{ comment.get_content_object_url }}">{{ comment.content_object.title }}</a>:
+          </small>
+          <br/>
+        {% endif %}
+        {{ comment.comment }}
+      </p>
+
     </dd>
   {% endfor %}
 </dl>

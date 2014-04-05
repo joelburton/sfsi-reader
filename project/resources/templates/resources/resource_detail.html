@@ -14,7 +14,7 @@
 
   {% if resource.file %}
     <p>File: <a href="{{ resource.file.url }}">{{ resource.title }}</a>
-    <small>{{ resource.file_mimetype }}, {{ resource.file_size }} bytes</small>
+    <small>{{ resource.file_mimetype }}, {{ resource.file_size|filesizeformat }} bytes</small>
     </p>
   {% endif %}
 

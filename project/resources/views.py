@@ -5,6 +5,7 @@ from django.core.mail import send_mail
 
 from django.db import connection
 from django.http import Http404
+from django.shortcuts import get_object_or_404
 from django.views import generic
 
 from .models import Day, Topic, Resource, Suggestion
@@ -60,12 +61,11 @@ class TopicDetailView(generic.DetailView):
                 (self.object.get_absolute_url(), self.object.title)]
 
     def get_object(self, queryset=None):
-        try:
-            return Topic.objects.active().only(
-                "title", "description", "id", "slug", "day"
-            ).get(slug=self.kwargs['slug'], day__slug=self.kwargs['day_slug'])
-        except Topic.DoesNotExist:
-            raise Http404()
+        return get_object_or_404(
+            Topic.objects.active().only("title", "description", "id", "slug", "day"),
+            slug=self.kwargs['slug'],
+            day_slug=self.kwargs['day_slug'],
+            )
 
     def get_context_data(self, **kwargs):
         data = super(TopicDetailView, self).get_context_data(**kwargs)
@@ -86,9 +86,9 @@ class KeyListView(generic.ListView):
     model = Resource
 
     def get_queryset(self):
-        return Resource.objects.active().filter(key=True)\
-            .defer("body")\
-            .prefetch_related('topic', 'topic__day')\
+        return Resource.objects.active().filter(key=True) \
+            .defer("body") \
+            .prefetch_related('topic', 'topic__day') \
             .order_by('topic', 'title')
 
 
@@ -118,15 +118,11 @@ class ResourceDetailView(generic.DetailView):
                 (self.object.get_absolute_url(), self.object.title)]
 
     def get_object(self, queryset=None):
-        try:
-            return Resource.objects\
-                .active()\
-                .defer("body")\
-                .get(slug=self.kwargs['slug'],
-                     topic__slug=self.kwargs['topic_slug'],
-                     topic__day__slug=self.kwargs['day_slug'])
-        except Resource.DoesNotExist:
-            raise Http404()
+        return get_object_or_404(
+            Resource.objects.active().defer("body"),
+            slug=self.kwargs['slug'],
+            topic__slug=self.kwargs['topic_slug'],
+            topic__day__slug=self.kwargs['day_slug'])
 
     def get_context_data(self, **kwargs):
         data = super(ResourceDetailView, self).get_context_data(**kwargs)
@@ -134,27 +130,14 @@ class ResourceDetailView(generic.DetailView):
         return data
 
 
-class AdditionalResourcesView(generic.DetailView):
-    """Detail view of a resource."""
-
-    template_name = "resources/resource_detail.html"
-    context_object_name = "resource"
-
-    def breadcrumbs(self):
-        return [('/days/', 'Days'),
-                (self.object.topic.day.get_absolute_url(), self.object.topic.day.title),
-                (self.object.topic.get_absolute_url(), self.object.topic.title),
-                (self.object.get_absolute_url(), self.object.title)]
+class AdditionalResourcesView(ResourceDetailView):
+    """Detail view of the resource that is the "more resources" link."""
 
     def get_object(self, queryset=None):
-        try:
-            return Resource.objects\
-                .active()\
-                .defer("body")\
-                .get(is_more=True)
-        except Resource.DoesNotExist:
-            raise Http404()
-
+        return get_object_or_404(
+            Resource.objects.active().defer("body"),
+            is_more=True
+        )
 
 ##################################################################################################
 

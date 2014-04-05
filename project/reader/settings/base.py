@@ -331,4 +331,7 @@ LOGIN_REDIRECT_URL = '/'
 # our grey-user icon.
 
 AVATAR_STORAGE_DIR = "avatars"
+AVATAR_GRAVATAR_DEFAULT = "mm"
 AUTO_GENERATE_AVATAR_SIZES = (20, 250,)
+
+LOGIN_EXEMPT_URLS = ["accounts/password/reset/"]

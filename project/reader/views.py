@@ -23,6 +23,8 @@ class HomepageView(generic.TemplateView):
                                    .order_by("-submit_date")[:4]
         data['latest_resources'] = Resource.objects\
                                        .active()\
+                                       .prefetch_related("topic", "topic__day")\
+                                       .defer("body")\
                                        .filter(created__gt=start_date)\
                                        .order_by("-created")[:4]
 
