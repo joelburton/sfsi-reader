@@ -7,3 +7,4 @@
 /static/*
 /start-server.sh
 /docs/_build
+/conf/uwsgi/__secret.ini
