@@ -21,7 +21,7 @@ def get_env_setting(setting):
 
 ########## HOST CONFIGURATION
 # See: https://docs.djangoproject.com/en/1.5/releases/1.5/#allowed-hosts-required-in-production
-ALLOWED_HOSTS = ['localhost', '127.0.0.1','reader.joelburton.com', 'reader.sfsi.org']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'reader.joelburton.com', 'reader.sfsi.org']
 ########## END HOST CONFIGURATION
 
 ########## EMAIL CONFIGURATION
@@ -35,7 +35,8 @@ EMAIL_HOST = environ.get('EMAIL_HOST', 'email-smtp.us-east-1.amazonaws.com')
 EMAIL_HOST_PASSWORD = environ.get('EMAIL_HOST_PASSWORD', '')
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#email-host-user
-EMAIL_HOST_USER = environ.get('EMAIL_HOST_USER', 'AKIAIB2SDPRTFNZ7AIMA')
+EMAIL_HOST_USER = environ.get('EMAIL_HOST_USER', 'joel@joelburton.com')
+# EMAIL_HOST_USER = environ.get('EMAIL_HOST_USER', 'AKIAIB2SDPRTFNZ7AIMA')
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#email-port
 EMAIL_PORT = environ.get('EMAIL_PORT', 587)
