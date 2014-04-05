@@ -335,3 +335,34 @@ AVATAR_GRAVATAR_DEFAULT = "mm"
 AUTO_GENERATE_AVATAR_SIZES = (20, 250,)
 
 LOGIN_EXEMPT_URLS = ["accounts/password/reset/"]
+
+LOGGING = {
+    'version': 1,
+
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+        },
+        'mail_admins': {
+            'level': 'WARNING',
+            'class': 'django.utils.log.AdminEmailHandler'
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'django.security': {
+            'handlers': ['mail_admins'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        '': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+    },
+}
