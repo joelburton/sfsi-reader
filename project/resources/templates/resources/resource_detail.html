@@ -18,6 +18,10 @@
     </p>
   {% endif %}
 
+  {% if user.is_staff %}
+    <a class="btn btn-xs btn-primary" href="/admin/resources/resource/{{ resource.id }}">Edit</a>
+  {% endif %}
+
 {% endblock %}
 
 {% block portlets %}
