@@ -220,7 +220,7 @@ class SuggestionCreateView(generic.CreateView):
 
         send_mail("[Reader Suggestion] %s" % form.cleaned_data['title'],
                   MSG % form.cleaned_data,
-                  form.cleaned_data['email'],
+                  "joel@joelburton.com",
                   [x[1] for x in settings.MANAGERS],
                   fail_silently=False)
 
