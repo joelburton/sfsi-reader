@@ -1,6 +1,7 @@
 """
 Views for site.
 """
+
 import datetime
 
 from django.views import generic
@@ -14,25 +15,34 @@ class HomepageView(generic.TemplateView):
 
     template_name = "homepage.html"
 
-    def get_context_data(self, **kwargs):
-        data = super(HomepageView, self).get_context_data()
+    @staticmethod
+    def latest_resources():
+        """List of most recent resources created within 30 days."""
 
-        start_date = datetime.datetime.now() - datetime.timedelta(days=30)
-        data['show_students'] = self.request.user.semesters.exists()
-        data['comment_list'] = Comment.objects\
-                                   .order_by("-submit_date")[:4]
-        data['latest_resources'] = Resource.objects\
-                                       .active()\
-                                       .prefetch_related("topic", "topic__day")\
-                                       .defer("body")\
-                                       .filter(created__gt=start_date)\
-                                       .order_by("-created")[:4]
+        start_date = datetime.datetime.now() - datetime.timedelta(days=300)
+        return (Resource.objects
+                .active()
+                .only('title', 'topic_id', 'id', 'slug')
+                .filter(created__gt=start_date)
+                .select_related("topic", "topic__day")
+                .order_by("-created")[:4]
+        )
 
-        return data
+    def show_students(self):
+        """Should we show link to other students in this semester?"""
+
+        return self.request.user.semesters.exists()
+
+    @staticmethod
+    def comment_list():
+        """Show 4 most recent comments by date."""
+
+        return Comment.objects.order_by("-submit_date")[:4]
 
 
 class TestErrorView(generic.View):
     """Test error page."""
 
-    def get(self, request):
+    @staticmethod
+    def get(request):
         raise Exception("Darn")
