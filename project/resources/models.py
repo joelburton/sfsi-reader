@@ -6,13 +6,10 @@ import urllib2
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models import permalink
-from django.db.models.signals import pre_save
-from django.dispatch import receiver
-from django.utils.text import slugify
-from docutils.parsers.rst.directives.body import Topic
 
 from model_utils.models import TimeStampedModel, StatusModel
-from resources.pdfconvert import convert_pdf_to_txt
+
+from .pdfconvert import convert_pdf_to_txt
 
 
 def make_published(modeladmin, request, queryset):
