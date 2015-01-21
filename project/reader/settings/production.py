@@ -24,6 +24,7 @@ DATABASES = {
         'USER': 'reader',
         'PASSWORD': environ.get('PG_PASSWORD'),
         'HOST': 'localhost',
+        'PORT': '5433',
         'CONN_MAX_AGE': None,
     }
 }

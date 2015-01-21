@@ -8,3 +8,5 @@
 /start-server.sh
 /docs/_build
 /conf/uwsgi/__secret.ini
+/reader/env.py
+/reader/env-production.py
