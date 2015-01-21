@@ -29,7 +29,7 @@ DATABASES = {
     }
 }
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = environ.get('SECRET_KEY')
 
 TEMPLATE_LOADERS = (
     ('django.template.loaders.cached.Loader', (
