@@ -23,7 +23,6 @@ ADMINS = (
 MANAGERS = ADMINS
 
 
-
 TIME_ZONE = 'America/Los_Angeles'
 USE_TZ = True
 

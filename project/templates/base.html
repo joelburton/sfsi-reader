@@ -98,7 +98,7 @@
 <div class="container">
 
   {# Push out breadcrumbs. Views that are deeper than one level in should have a "breadcrumbs" #}
-  {# method on the, which returns a list of tuples: (url, title) #}
+  {# method on them, which returns a list of tuples: (url, title) #}
   {% with breadcrumbs=view.breadcrumbs %}
     {% if breadcrumbs %}
       <ul class="breadcrumb">

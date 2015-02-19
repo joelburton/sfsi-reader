@@ -1,9 +1,9 @@
 from django.contrib import messages
-from django.core.urlresolvers import reverse
 from django.views import generic
 from django.views.generic import UpdateView
-from members.forms import MemberProfileForm
-from members.models import Member
+
+from .forms import MemberProfileForm
+from .models import Member
 
 
 class MemberListView(generic.TemplateView):
@@ -12,17 +12,16 @@ class MemberListView(generic.TemplateView):
     template_name = 'members/member_list.html'
 
     def get_context_data(self, **kwargs):
-        data = super(MemberListView, self).get_context_data(**kwargs)
-        data['semesters'] = []
+        """Show visible peers from their semesters."""
+
+        context = super(MemberListView, self).get_context_data(**kwargs)
+        context['semesters'] = []
         for semester in self.request.user.semesters.all():
-            data['semesters'].append(
-                {'title': semester.title,
-                 'students': [m
-                              for m
-                              in Member.objects.filter(semesters=semester, visible=True).order_by('last_name', 'first_name')],
-                }
-            )
-        return data
+            peers = (Member.objects
+                     .filter(semesters=semester, visible=True)
+                     .order_by('last_name', 'first_name'))
+            context['semesters'].append({'title': semester.title, 'students': list(peers)})
+        return context
 
 
 class MemberDetailView(generic.DetailView):
@@ -35,6 +34,8 @@ class MemberDetailView(generic.DetailView):
                 (self.object.get_absolute_url(), self.object.get_full_name())]
 
     def get_queryset(self):
+        """Students can see themselves and their peers from their semester(s)."""
+
         user_semesters = self.request.user.semesters.all()
         if self.kwargs['slug'] == self.request.user.username:
             return Member.objects.filter(username=self.request.user.username)
@@ -42,8 +43,10 @@ class MemberDetailView(generic.DetailView):
             return Member.objects.filter(semesters=user_semesters, visible=True)
 
     def get_context_data(self, **kwargs):
+        """Students can edit themselves."""
+
         context = super(MemberDetailView, self).get_context_data(**kwargs)
-        context['editable'] = self.kwargs['slug'] == self.request.user.username
+        context['editable'] = (self.kwargs['slug'] == self.request.user.username)
         return context
 
 
@@ -55,13 +58,13 @@ class ProfileUpdateView(UpdateView):
     template_name = 'account/profile.html'
     success_url = '/accounts/profile/'
 
-    def get_object(self):
+    def get_object(self, queryset=None):
         """Get the currently logged-in user."""
 
         return self.request.user
 
     def form_valid(self, form):
-        url = reverse('member.detail', kwargs={'slug': self.request.user.username})
+        url = self.object.get_absolute_url()
         messages.add_message(self.request,
                              messages.SUCCESS,
                              'Profile edited. <a href="%s">View your profile</a>' % url)

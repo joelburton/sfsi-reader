@@ -7,12 +7,12 @@
   Public profile.
 """
 
-from django.conf.urls import patterns, url
-from members.views import MemberListView, MemberDetailView
+from django.conf.urls import url
+
+from .views import MemberListView, MemberDetailView
 
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
 
     url(r'^$',
         MemberListView.as_view(),
@@ -22,4 +22,4 @@ urlpatterns = patterns(
         MemberDetailView.as_view(),
         name='member.detail'),
 
-)
+]

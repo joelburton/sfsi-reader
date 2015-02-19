@@ -1,6 +1,6 @@
 """Site URLs."""
 
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
@@ -8,10 +8,8 @@ from django.contrib import admin
 from .views import HomepageView, TestErrorView
 from members.views import ProfileUpdateView
 
-admin.autodiscover()
 
-
-urlpatterns = patterns('',
+urlpatterns = [
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^comments/', include('django_comments.urls')),
@@ -25,6 +23,6 @@ urlpatterns = patterns('',
     url(r'^_error/$', TestErrorView.as_view()),
     url(r'^', include('resources.urls', namespace='resources')),
     url(r'^avatar/', include('avatar.urls')),
-)
+]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

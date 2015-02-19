@@ -17,7 +17,7 @@ class HomepageView(generic.TemplateView):
 
     @staticmethod
     def latest_resources():
-        """List of most recent resources created within 30 days."""
+        """List of most recent resources created semi-recently."""
 
         start_date = datetime.datetime.now() - datetime.timedelta(days=300)
         return (Resource.objects
