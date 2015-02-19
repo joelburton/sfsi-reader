@@ -1,5 +1,4 @@
 - logging on production
 - cannot add members via django admin -- very annoying
-- add "more resources" doc
 - fix CSS blue colors on hovers, button clicks, etc
 - make comments have a link to piece of content

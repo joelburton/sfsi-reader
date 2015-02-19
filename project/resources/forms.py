@@ -22,6 +22,7 @@ class TopicInlineForm(forms.ModelForm):
 
     class Meta:
         model = Topic
+        exclude = []
 
 
 class ResourceForm(forms.ModelForm):
@@ -40,6 +41,7 @@ class ResourceForm(forms.ModelForm):
 
     class Meta:
         model = Resource
+        exclude = []
 
 
 class SuggestionForm(forms.ModelForm):
@@ -59,3 +61,4 @@ class SuggestionForm(forms.ModelForm):
 
     class Meta:
         model = Suggestion
+        exclude = []

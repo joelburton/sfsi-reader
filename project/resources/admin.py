@@ -24,16 +24,17 @@ class DayAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': (
-                       'title',
-                       'description',
-                       'status',
+                'title',
+                'description',
+                'status',
             )}),
         ('Advanced', {
-            'fields': ('id',
-                       'slug',
-                       'created',
-                       'modified',
-                       'status_changed',
+            'fields': (
+                'id',
+                'slug',
+                'created',
+                'modified',
+                'status_changed',
             ),
             'classes': ('grp-collapse', 'grp-closed')}))
     readonly_fields = ['id', 'created', 'modified', 'status_changed']
@@ -48,6 +49,8 @@ class DayAdmin(admin.ModelAdmin):
         """Additional CSS/JS to send out with this admin interface."""
         css = {"all": ["css/admin_extra.css"]}
 
+admin.site.register(Day, DayAdmin)
+
 
 class TopicAdmin(admin.ModelAdmin):
     """Topic administrative pages."""
@@ -56,17 +59,18 @@ class TopicAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': (
-                       'title',
-                       'description',
-                       'day',
-                       'status',
+                'title',
+                'description',
+                'day',
+                'status',
             )}),
         ('Advanced', {
-            'fields': ('id',
-                       'slug',
-                       'created',
-                       'modified',
-                       'status_changed',
+            'fields': (
+                'id',
+                'slug',
+                'created',
+                'modified',
+                'status_changed',
             ),
             'classes': ('grp-collapse', 'grp-closed')}))
     readonly_fields = ['id', 'created', 'modified', 'status_changed']
@@ -76,6 +80,8 @@ class TopicAdmin(admin.ModelAdmin):
     list_display_links = ['title', 'slug']
     actions = [make_published, make_private]
     ordering = ['day', 'position']
+
+admin.site.register(Topic, TopicAdmin)
 
 
 class ResourceAdmin(admin.ModelAdmin):
@@ -95,14 +101,15 @@ class ResourceAdmin(admin.ModelAdmin):
                 'status',
             )}),
         ('Advanced', {
-            'fields': ('id',
-                       'slug',
-                       'file_size',
-                       'file_mimetype',
-                       'created',
-                       'modified',
-                       'status_changed',
-                       'is_more',
+            'fields': (
+                'id',
+                'slug',
+                'file_size',
+                'file_mimetype',
+                'created',
+                'modified',
+                'status_changed',
+                'is_more',
             ),
             'classes': ('grp-collapse', 'grp-closed')}))
     readonly_fields = ['id', 'created', 'modified', 'status_changed', 'file_size', 'file_mimetype']
@@ -114,6 +121,8 @@ class ResourceAdmin(admin.ModelAdmin):
     ordering = ['topic', 'title']
     form = ResourceForm
 
+admin.site.register(Resource, ResourceAdmin)
+
 
 class SuggestionAdmin(admin.ModelAdmin):
     """Suggestion administrative pages."""
@@ -122,8 +131,4 @@ class SuggestionAdmin(admin.ModelAdmin):
     list_display = ('title', 'description', 'created', 'name')
     search_fields = ('title', 'description', 'name', 'email')
 
-
-admin.site.register(Day, DayAdmin)
-admin.site.register(Topic, TopicAdmin)
-admin.site.register(Resource, ResourceAdmin)
 admin.site.register(Suggestion, SuggestionAdmin)

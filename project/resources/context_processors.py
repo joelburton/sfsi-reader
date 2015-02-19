@@ -13,7 +13,7 @@ NAV = [
     ('Topics', '/topics/', 'list-alt'),
     ('Key Resources', '/key-resources/', 'star'),
     ('Required', '/required/', 'exclamation-sign'),
-    ]
+]
 
 
 def site_nav(request):
@@ -22,13 +22,17 @@ def site_nav(request):
     Adds a CSS class of active if we're within that part of the site.
     """
 
-    return {'site_nav':
-                [
-                    {'title': title,
-                     'path': path,
-                     'glyph': glyph,
-                     'class': 'active' if request.path.startswith(path) else ''
-                    }
-                    for title, path, glyph in NAV
-                ]
+    in_ = request.path.startswith
+
+    return {
+        'site_nav':
+            [
+                {
+                    'title': title,
+                    'path': path,
+                    'glyph': glyph,
+                    'class': 'active' if in_(path) else ''
+                }
+                for title, path, glyph in NAV
+            ]
     }

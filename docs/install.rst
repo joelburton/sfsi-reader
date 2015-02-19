@@ -22,7 +22,6 @@ You'll also need to create a database, "reader"::
 
 Then we'll create our databases::
 
-  $ python project/manage.py syncdb
   $ python project/manage.py migrate
 
 You'll probably want to make a superuser for yourself::

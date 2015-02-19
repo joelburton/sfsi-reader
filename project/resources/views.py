@@ -1,10 +1,9 @@
 """Views related to resources and searching resources."""
+
 from django.conf import settings
 from django.contrib import messages
 from django.core.mail import send_mail
-
 from django.db import connection
-from django.http import Http404
 from django.shortcuts import get_object_or_404
 from django.views import generic
 
@@ -15,26 +14,24 @@ from .forms import SuggestionForm
 class DayListView(generic.ListView):
     """List of days."""
 
-    def get_queryset(self):
-        return Day.objects.active()
+    queryset = Day.objects.active()
 
 
 class DayDetailView(generic.DetailView):
     """Detail view of a day, listing topics for that day."""
 
+    queryset = Day.objects.active()
+
     def breadcrumbs(self):
         return [('/days/', 'Days'),
                 (self.object.get_absolute_url(), self.object.title)]
 
-    def get_queryset(self):
-        return Day.objects.active()
-
     def get_context_data(self, **kwargs):
-        data = super(DayDetailView, self).get_context_data(**kwargs)
-        data['topics'] = data['day'].topic_set.active().only(
-            "title", "description", "id", "slug", "day"
-        ).order_by('position')
-        return data
+        """Get topics for this day."""
+
+        context = super(DayDetailView, self).get_context_data(**kwargs)
+        context['topics'] = context['day'].topic_set.active().order_by('position')
+        return context
 
 
 ##################################################################################################
@@ -43,10 +40,7 @@ class DayDetailView(generic.DetailView):
 class TopicListView(generic.ListView):
     """List of all topics."""
 
-    def get_queryset(self):
-        return Topic.objects.active().order_by('title').prefetch_related("day").only(
-            "title", "description", "id", "slug", "day"
-        )
+    queryset = Topic.objects.active().prefetch_related("day")
 
 
 class TopicDetailView(generic.DetailView):
@@ -62,18 +56,19 @@ class TopicDetailView(generic.DetailView):
 
     def get_object(self, queryset=None):
         return get_object_or_404(
-            Topic.objects.active().only("title", "description", "id", "slug", "day"),
+            Topic.objects.active(),
             slug=self.kwargs['slug'],
             day__slug=self.kwargs['day_slug'],
-            )
+        )
 
     def get_context_data(self, **kwargs):
-        data = super(TopicDetailView, self).get_context_data(**kwargs)
+        """Get resources and other-topics-in-this-day."""
+
+        context = super(TopicDetailView, self).get_context_data(**kwargs)
         # Important: we don't want the massive search fields from resources pulled down!
-        data['resources'] = data['topic'].resource_set.active().only(
-            "title", "description", "id", "topic", "key", "required", "slug")
-        data['topics'] = data['topic'].day.topic_set.active().order_by('title')
-        return data
+        context['resources'] = context['topic'].resource_set.active().defer("body")
+        context['topics'] = context['topic'].day.topic_set.active()
+        return context
 
 
 ##################################################################################################
@@ -83,26 +78,22 @@ class KeyListView(generic.ListView):
     """List of key resources."""
 
     template_name = "resources/key_list.html"
-    model = Resource
 
-    def get_queryset(self):
-        return Resource.objects.active().filter(key=True) \
-            .defer("body") \
-            .prefetch_related('topic', 'topic__day') \
-            .order_by('topic', 'title')
+    queryset = Resource.objects.active().filter(key=True) \
+        .defer("body") \
+        .prefetch_related('topic', 'topic__day') \
+        .order_by('topic', 'title')
 
 
 class RequiredListView(generic.ListView):
     """List of required resources."""
 
-    model = Resource
     template_name = "resources/required_list.html"
 
-    def get_queryset(self):
-        return Resource.objects.active().filter(required=True) \
-            .defer("body") \
-            .prefetch_related('topic', 'topic__day') \
-            .order_by('topic', 'title')
+    queryset = Resource.objects.active().filter(required=True) \
+        .defer("body") \
+        .prefetch_related('topic', 'topic__day') \
+        .order_by('topic', 'title')
 
 
 class ResourceDetailView(generic.DetailView):
@@ -125,9 +116,11 @@ class ResourceDetailView(generic.DetailView):
             topic__day__slug=self.kwargs['day_slug'])
 
     def get_context_data(self, **kwargs):
-        data = super(ResourceDetailView, self).get_context_data(**kwargs)
-        data['resources'] = data['resource'].topic.resource_set.active().order_by('title')
-        return data
+        """Get other resources in this topic."""
+
+        context = super(ResourceDetailView, self).get_context_data(**kwargs)
+        context['resources'] = context['resource'].topic.resource_set.active().order_by('title')
+        return context
 
 
 class AdditionalResourcesView(ResourceDetailView):
@@ -139,6 +132,7 @@ class AdditionalResourcesView(ResourceDetailView):
             is_more=True
         )
 
+
 ##################################################################################################
 
 
@@ -148,8 +142,8 @@ class SearchView(generic.TemplateView):
     template_name = 'resources/search.html'
 
     def get_context_data(self, **kwargs):
-        data = super(SearchView, self).get_context_data(**kwargs)
-        data['q'] = q = self.request.GET.get('q', '')
+        context = super(SearchView, self).get_context_data(**kwargs)
+        context['q'] = q = self.request.GET.get('q', '')
         if q:
             cursor = connection.cursor()
             cursor.execute(
@@ -164,7 +158,7 @@ class SearchView(generic.TemplateView):
                 "   AND status='published'"
                 " ORDER BY rank DESC", [q]
             )
-            data['topic_results'] = cursor.fetchall()
+            context['topic_results'] = cursor.fetchall()
 
             cursor.execute(
                 "SELECT title,"
@@ -179,15 +173,15 @@ class SearchView(generic.TemplateView):
                 "   AND status='published'"
                 " ORDER BY rank DESC", [q]
             )
-            data['resource_results'] = cursor.fetchall()
+            context['resource_results'] = cursor.fetchall()
 
-        return data
+        return context
 
 
 ##################################################################################################
 
 
-MSG = """
+SUGGESTION_MSG = """
 A new resource has been suggested for the reader.
 
 Name: %(name)s
@@ -198,6 +192,7 @@ Description: %(description)s
 Please visit the reader to view this resource.
 """
 
+
 class SuggestionCreateView(generic.CreateView):
     """Create view for suggestions."""
 
@@ -205,23 +200,19 @@ class SuggestionCreateView(generic.CreateView):
     form_class = SuggestionForm
     success_url = "/"
 
-    # def get_form_kwargs(self):
-    #     """Supply initial arguments."""
-    #     kw = super(SuggestionCreateView, self).get_form_kwargs()
-    #     kw['initial']['name'] = self.request.user.get_full_name()
-    #     kw['initial']['email'] = self.request.user.email
-    #     return kw
-
     def get_initial(self):
+        """Initially fill with user info."""
+
         return {'name': self.request.user.get_full_name(),
                 'email': self.request.user.email}
 
     def form_valid(self, form):
+        """Send email and thank user."""
 
         send_mail("[Reader Suggestion] %s" % form.cleaned_data['title'],
-                  MSG % form.cleaned_data,
+                  SUGGESTION_MSG % form.cleaned_data,
                   "joel@joelburton.com",
-                  [x[1] for x in settings.MANAGERS],
+                  [mgr[1] for mgr in settings.MANAGERS],
                   fail_silently=False)
 
         messages.add_message(self.request, messages.SUCCESS, "Your suggestion has been noted.")

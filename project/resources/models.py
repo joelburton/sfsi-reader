@@ -109,7 +109,7 @@ class Day(MetadataMixin):
     """Training day."""
 
     class Meta:
-        unique_together = [['slug'], ['title']]
+        unique_together = [['slug'], ['title']]   # make each unique on their own
         ordering = ['title']
 
     objects = PublishedManager()
@@ -133,7 +133,7 @@ class Topic(MetadataMixin):
         )
 
     class Meta:
-        # Topic slugs are unique across site. We don't *need* to have this be the case--topics
+        # Topics are unique across site. We don't *need* to have this be the case--topics
         # could be unique only within their day, for instance, but we're so unlikely to actually
         # have overlapping topic titles/slugs, it's far more likely to be user error.
         unique_together = [['slug'], ['title']]
@@ -196,7 +196,7 @@ class Resource(MetadataMixin):
     )
 
     body = models.TextField(
-        blank='',
+        blank=True,
         help_text='This is the extracted body of the PDF/remote link, used for searching.',
         )
 

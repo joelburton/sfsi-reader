@@ -29,14 +29,13 @@
 
 """
 
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
 from .views import DayDetailView, DayListView, TopicDetailView, TopicListView, ResourceDetailView,\
     RequiredListView, KeyListView, SearchView, AdditionalResourcesView, SuggestionCreateView
 
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
 
     url(r'^days/$',
         DayListView.as_view(),
@@ -77,4 +76,5 @@ urlpatterns = patterns(
     url(r'^suggestions/$',
         SuggestionCreateView.as_view(),
         name='suggestions'),
-    )
+
+]

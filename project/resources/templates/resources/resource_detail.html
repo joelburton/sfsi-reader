@@ -30,7 +30,7 @@
     {% render_comment_list for resource %}
 
       {% get_comment_form for resource as form %}
-      <form action="{% comment_form_target %}" method="POST">
+      <form action="/comments/post/" method="POST">
         {% csrf_token %}
         {{ form.comment }}
         {{ form.content_type }}

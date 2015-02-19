@@ -50,7 +50,7 @@ def convert_pdf_to_txt(fp):
     :returns: Unicode string of first 30 pages of PDF
 
     We only convert the first 30 pages for performance and storage reasons; presumably, almost all
-    search terms we might find in a document should appear in the first 10 pages, anyway.
+    search terms we might find in a document should appear in the first pages, anyway.
     """
 
     temp_file = tempfile.NamedTemporaryFile(suffix='.pdf', delete=False)

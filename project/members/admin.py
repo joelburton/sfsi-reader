@@ -25,7 +25,7 @@ class MyUserCreationForm(UserCreationForm):
 
 
 class MemberAdmin(UserAdmin):
-    # add_form = MyUserCreationForm
+    add_form = MyUserCreationForm
     fieldsets = UserAdmin.fieldsets + (
         ('Profile', {
             'fields': ('description',
