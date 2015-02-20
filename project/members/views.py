@@ -1,6 +1,8 @@
+from random import randint
 import smtplib
 
 from django.contrib import messages
+from django.db import transaction
 from django.utils.decorators import method_decorator
 from django.views import generic
 from django.views.generic import UpdateView, FormView, TemplateView
@@ -114,38 +116,46 @@ class MemberBulkAddView(FormView):
         added = []
         errors = []
 
-        for data in member_form.cleaned_data:
-            if not data:
-                continue
+        with transaction.atomic():
+            for data in member_form.cleaned_data:
+                if not data:
+                    continue
 
-            fn, ln, email = data['first_name'], data['last_name'], data['email']
-            data['password'] = password
-
-            try:
-                # Add this semester to an existing-in-system student
-                member = Member.objects.get(email=email)
-                member.semesters.add(semester)
-                member.save()  # FIXME: do we need this for m2m-only changes?
-                associated.append(data)
-
-            except Member.DoesNotExist:
-                # Add new student and send them welcome email
-                username = (fn + "_" + ln).lower()
-                member = Member.objects.create_user(username=username,
-                                                    email=email,
-                                                    password=password)
-                member.semesters = [semester]
-                member.first_name = fn
-                member.last_name = ln
-                member.save()
-                added.append(data)
+                fn, ln, email = data['first_name'], data['last_name'], data['email']
+                data['password'] = password
 
                 try:
-                    member.email_user(subject="SFSI Reader Login",
-                                      message=email_body.format(**data),
-                                      from_email='joel@joelburton.com')
-                except smtplib.SMTPException:
-                    errors.append(data)
+                    # Add this semester to an existing-in-system student
+                    member = Member.objects.get(email=email)
+                    member.semesters.add(semester)
+                    associated.append(data)
+
+                except Member.DoesNotExist:
+                    # Add new student and send them welcome email
+                    username = (fn + "_" + ln).lower()
+
+                    # Perhaps the same user has a different email? Or maybe this is an
+                    # actual different human but with the same first/last names?
+                    # To be safe, let's assume it's a new person and force a unique
+                    # username
+                    if Member.objects.filter(username=username).exists():
+                        username = username + "_" + str(randint(1000, 9999))
+
+                    member = Member.objects.create_user(username=username,
+                                                        email=email,
+                                                        password=password)
+                    member.semesters = [semester]
+                    member.first_name = fn
+                    member.last_name = ln
+                    member.save()
+                    added.append(data)
+
+                    try:
+                        member.email_user(subject="SFSI Reader Login",
+                                          message=email_body.format(**data),
+                                          from_email='joel@joelburton.com')
+                    except smtplib.SMTPException:
+                        errors.append(data)
 
         self.request.session['added'] = added
         self.request.session['associated'] = associated
@@ -163,12 +173,9 @@ class MemberBulkAddSuccessView(TemplateView):
         """Get status stuff and clear from session."""
 
         context = super(MemberBulkAddSuccessView, self).get_context_data(**kwargs)
-        context['added'] = self.request.session['added']
-        context['errors'] = self.request.session['errors']
-        context['associated'] = self.request.session['associated']
-        del self.request.session['added']
-        del self.request.session['errors']
-        del self.request.session['associated']
+        context['added'] = self.request.session.pop('added')
+        context['errors'] = self.request.session.pop('errors')
+        context['associated'] = self.request.session.pop('associated')
         return context
 
 
