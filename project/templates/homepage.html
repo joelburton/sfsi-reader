@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load cache %}
+{% load cache bootstrap3 %}
 
 
 {% block title %}Home{% endblock %}
@@ -13,44 +13,14 @@
     <p class="lead">Resources for the Spring 2015 SFSI Sex Educator Training.</p>
 
     <div class="homepage-nav">
-      <h2>
-        <a href="/days/">
-          <span class="glyphicon glyphicon-calendar"></span> Browse by Day
-        </a>
-      </h2>
-
-      <h2>
-        <a href="/topics/">
-          <span class="glyphicon glyphicon-list-alt"></span> Browse by Topic
-        </a>
-      </h2>
-
-      <h2>
-        <a href="/key-resources/">
-          <span class="glyphicon glyphicon-star"></span> View all Key Resources
-        </a>
-      </h2>
-
-      <h2>
-        <a href="/required/">
-          <span class="glyphicon glyphicon-exclamation-sign"></span> View all Required Reading
-        </a>
-      </h2>
-
-      <h2>
-        <a href="/more/">
-          <span class="glyphicon glyphicon-globe"></span> Directory of Additional Resources
-      </a>
-      </h2>
-
+      <h2><a href="/days/">{% bootstrap_icon 'calendar' %} Browse by Day</a></h2>
+      <h2><a href="/topics/">{% bootstrap_icon 'list-alt' %} Browse by Topic</a></h2>
+      <h2><a href="/key-resources/">{% bootstrap_icon 'star' %} View all Key Resources</a></h2>
+      <h2><a href="/required/">{% bootstrap_icon 'exclamation-sign' %} View all Required Reading</a></h2>
+      <h2><a href="/more/">{% bootstrap_icon 'globe' %} Directory of Additional Resources</a></h2>
       {% if view.show_students %}
-        <h2>
-          <a href="/members/">
-            <span class="glyphicon glyphicon-user"></span> View Your Fellow Students
-        </a>
-        </h2>
+        <h2><a href="/members/">{% bootstrap_icon 'user' %} View Your Fellow Students </a></h2>
       {% endif %}
-
     </div>
 
     <h2 class="questions">Questions or Suggestions?</h2>

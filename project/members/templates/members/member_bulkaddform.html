@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load bootstrap %}
+{% load bootstrap3 %}
 
 {% block title %}Bulk Add Members{% endblock %}
 
@@ -9,7 +9,7 @@
 
    <form role="form" method="post">
     {% csrf_token %}
-    {{ form|bootstrap }}
+    {% bootstrap_form form %}
 
             <fieldset>
                 <legend>Members</legend>
@@ -23,23 +23,20 @@
                         {{ form.description }}
                       <div class="row">
                       <div class="col-md-3">
-                        {{ form.first_name|bootstrap }}
+                        {% bootstrap_field form.first_name size="sm" show_label=False %}
                       </div>
                       <div class="col-md-3">
-                        {{ form.last_name|bootstrap }}
+                        {% bootstrap_field form.last_name size="sm" show_label=False %}
                       </div>
                       <div class="col-md-6">
-                        {{ form.email|bootstrap }}
+                        {% bootstrap_field form.email size="sm" show_label=False %}
                       </div>
                       </div>
                     </div>
                 {% endfor %}
             </fieldset>
 
-
-    <button type="submit" class="btn btn-primary">Submit</button>
-
-
+    {% buttons submit='Create' %}{% endbuttons %}
 
   </form>
 

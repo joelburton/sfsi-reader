@@ -101,11 +101,14 @@ class MemberBulkAddView(FormView):
     def form_valid(self, form):
         """Form (and formset of members) was valid; add them and send emails."""
 
+        member_form = MemberBulkCreationFormSet(self.request.POST)
+        if not member_form.is_valid():
+            return self.form_invalid(form)
+
+
         semester = form.cleaned_data['semester']
         password = form.cleaned_data['default_password']
         email_body = form.cleaned_data['email_body']
-
-        member_form = MemberBulkCreationFormSet(self.request.POST)
 
         associated = []
         added = []

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load bootstrap3 %}
 
 {% block content %}
 
@@ -8,10 +9,8 @@
   <dl>
     {% for resource in resources %}
       <dt>
-        {% if resource.key %}<span class="glyphicon glyphicon-star"></span>{% endif %}
-        {% if resource.required %}
-          <span class="glyphicon glyphicon-exclamation-sign"></span>
-        {% endif %}
+        {% if resource.key %}{% bootstrap_icon 'star' %}{% endif %}
+        {% if resource.required %}{% bootstrap_icon 'exclamation-sign' %}{% endif %}
         <a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a>
       </dt>
       <dd>

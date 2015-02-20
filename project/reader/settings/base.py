@@ -94,7 +94,7 @@ DJANGO_APPS = (
     'grappelli',
     'django.contrib.admin',
 
-    'bootstrapform',
+    'bootstrap3',
     'django_comments',
     'avatar',
     'django_extensions',
@@ -131,15 +131,9 @@ INSTALLED_APPS += (
     'allauth.socialaccount',
 )
 
-##################################################################################################
-# Messages
-#
-# The messages app pushes out alerts with a "tag" for the severity of the alert. Unfortunately,
-# their tag for errors is "error", which doesn't match a Bootstrap CSS style. So let's re-map
-# this severity level to "danger", which does match a Bootstrap CSS style.
-
-MESSAGE_TAGS = {40: 'danger'}
-
+BOOTSTRAP3 = {
+    'css_url': "//netdna.bootstrapcdn.com/bootswatch/3.3.2/yeti/bootstrap.min.css"
+}
 
 
 # Joel's MacBook can timeout when at a cafe with incorrectly-set DNS settings, as it doesn't know
