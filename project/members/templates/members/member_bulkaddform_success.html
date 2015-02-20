@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <h1>Bulk Add Successful</h1>
+  <p>Read on for important details.</p>
+
+  {% if errors %}
+    <h2>Email Errors</h2>
+    <p>The following attempts to send email had errors:</p>
+    <ul>
+      {% for p in errors %}
+        <li>{{ p.first_name }} {{ p.last_name }} {{ p.email }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {% if added %}
+    <h2>Added</h2>
+    <p>The following students have been added:</p>
+    <ul>
+      {% for p in added %}
+        <li>{{ p.first_name }} {{ p.last_name }} {{ p.email }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {% if associated %}
+    <h2>Added to Semester</h2>
+    <p>The following students were already in this system, but have been associated with this
+      semester:</p>
+    <ul>
+      {% for p in associated %}
+        <li>{{ p.first_name }} {{ p.last_name }} {{ p.email }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+{% endblock %}

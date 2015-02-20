@@ -9,10 +9,18 @@
 
 from django.conf.urls import url
 
-from .views import MemberListView, MemberDetailView
+from .views import MemberListView, MemberDetailView, MemberBulkAddView, MemberBulkAddSuccessView
 
 
 urlpatterns = [
+
+    url(r'^semester-add/$',
+        MemberBulkAddView.as_view(),
+        name='member.bulkadd'),
+
+    url(r'^semester-add/success/$',
+        MemberBulkAddSuccessView.as_view(),
+        name='member.bulkadd-success'),
 
     url(r'^$',
         MemberListView.as_view(),

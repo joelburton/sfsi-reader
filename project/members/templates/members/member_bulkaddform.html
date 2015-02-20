@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+
+{% block title %}Bulk Add Members{% endblock %}
+
+{% block content %}
+  <h1>Bulk Add Members</h1>
+  <p class="lead">Add students for a semester.</p>
+
+   <form role="form" method="post">
+    {% csrf_token %}
+    {{ form|bootstrap }}
+
+            <fieldset>
+                <legend>Members</legend>
+                {{ member_form.management_form }}
+                {{ member_form.non_form_errors }}
+                {% for form in member_form %}
+                    {{ form.id }}
+                    <div class="inline {{ form.prefix }}">
+                        {{ form.description.errors }}
+                        {{ form.description.label_tag }}
+                        {{ form.description }}
+                      <div class="row">
+                      <div class="col-md-3">
+                        {{ form.first_name|bootstrap }}
+                      </div>
+                      <div class="col-md-3">
+                        {{ form.last_name|bootstrap }}
+                      </div>
+                      <div class="col-md-6">
+                        {{ form.email|bootstrap }}
+                      </div>
+                      </div>
+                    </div>
+                {% endfor %}
+            </fieldset>
+
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+
+
+  </form>
+
+{% endblock %}

@@ -9,7 +9,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import Semester, Member
 
 
-class MyUserCreationForm(UserCreationForm):
+class MemberAdminCreationForm(UserCreationForm):
     """We need to subclass this because the original always used the "User" model."""
 
     def clean_username(self):
@@ -25,7 +25,7 @@ class MyUserCreationForm(UserCreationForm):
 
 
 class MemberAdmin(UserAdmin):
-    add_form = MyUserCreationForm
+    add_form = MemberAdminCreationForm
     fieldsets = UserAdmin.fieldsets + (
         ('Profile', {
             'fields': ('description',
@@ -44,4 +44,5 @@ class MemberAdmin(UserAdmin):
 
 
 admin.site.register(Semester)
+
 admin.site.register(Member, MemberAdmin)
