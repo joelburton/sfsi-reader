@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load bootstrap3 %}
+{% load bootstrap3 bookmarks_tags %}
 
 {% block content %}
 
@@ -24,6 +24,10 @@
 
 
 {% block portlets %}
+  <div class="portlet">
+    <header>Bookmark</header>
+    {% bookmark_widget for object %}
+  </div>
 
   <div class="portlet">
     <header>Topics in {{ topic.day.title }}</header>

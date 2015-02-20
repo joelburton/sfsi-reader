@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^members/', include('members.urls')),
     url(r'^$', HomepageView.as_view()),
     url(r'^_error/$', TestErrorView.as_view()),
+    url(r'^bookmarks/', include('bookmarks.urls', namespace='bookmarks')),
     url(r'^', include('resources.urls', namespace='resources')),
     url(r'^avatar/', include('avatar.urls')),
 ]

@@ -1,27 +1,24 @@
 {% extends "account/base.html" %}
-{% load bootstrap static %}
+{% load bootstrap3 static %}
 
 {% block head_title %}Profile{% endblock %}
 {% block account_nav_profile %}active{% endblock %}
 
 {% block account_content %}
   <h2>Edit Profile
-  {% if request.user.visible %}
-    <a class="pull-right btn btn-sm btn-primary"
-      href="{% url 'member.detail' slug=user.username %}">View Your Public Profile</a>
-  {% else %}
-    <small class="pull-right text-muted">(Your profile is not visible to others)</small>
-  {% endif %}
+    {% if request.user.visible %}
+      <a class="pull-right btn btn-sm btn-primary"
+         href="{% url 'member.detail' slug=user.username %}">View Your Public Profile</a>
+    {% else %}
+      <small class="pull-right text-muted">(Your profile is not visible to others)</small>
+    {% endif %}
   </h2>
 
   <form method="POST" action="" class="profile">
-  {% csrf_token %}
-
-  {{ form|bootstrap }}
-
-  <div class="form-actions">
-    <button class="btn btn-primary" type="submit" name="action">Update Profile</button>
-  </div>
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons submit="Update Profile" %}{% endbuttons %}
+  </form>
 
 {% endblock %}
 

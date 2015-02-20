@@ -54,6 +54,7 @@ body {
     background-color: white;
     li a {
       color: black !important;
+      font-weight: 400 !important;
     }
   }
 
@@ -121,6 +122,9 @@ a {
   color: purple;
 }
 
+.nav .glyphicon-bookmark {
+  color: lightblue;
+}
 
 #homepage {
 
@@ -170,9 +174,18 @@ dd {
   color: #333;
 }
 
+button, input[type=submit], input[type=button], a.btn {
+  border-radius: 5px !important;
+}
+
 .btn-primary {
   background-color: red;
   border-color: darkred;
+
+  &:hover {
+    background-color: darkred;
+  }
+
 }
 
 #search-results {

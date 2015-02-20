@@ -1,5 +1,5 @@
 {% extends "account/base.html" %}
-{% load avatar_tags bootstrap %}
+{% load avatar_tags bootstrap3 %}
 
 
 {% block head_title %}Avatar{% endblock %}
@@ -24,8 +24,9 @@
   {% endif %}
 
   <form enctype="multipart/form-data" method="POST" action="{% url 'account_avatar' %}">
-    {{ upload_avatar_form|bootstrap }}
-    <p>{% csrf_token %}<input type="submit" class="btn btn-primary" value="Upload New Image"/></p>
+    {% csrf_token %}
+    {% bootstrap_form upload_avatar_form %}
+    {% buttons submit="Upload New Image" %}{% endbuttons %}
   </form>
 {% endblock %}
 

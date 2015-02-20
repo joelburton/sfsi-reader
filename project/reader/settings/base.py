@@ -104,6 +104,7 @@ DJANGO_APPS = (
 LOCAL_APPS = (
     'resources',
     'members',
+    'bookmarks',
 )
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS

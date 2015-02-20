@@ -23,7 +23,7 @@ class MemberListView(generic.TemplateView):
 
         context = super(MemberListView, self).get_context_data(**kwargs)
         context['semesters'] = []
-        for semester in self.request.user.semesters.all():
+        for semester in self.request.user.semesters.order_by("-id").all():
             peers = (Member.objects
                      .filter(semesters=semester, visible=True)
                      .order_by('last_name', 'first_name'))

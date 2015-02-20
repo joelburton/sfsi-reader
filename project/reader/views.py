@@ -8,6 +8,7 @@ from django.views import generic
 from django_comments import Comment
 
 from resources.models import Resource
+from members.models import Semester
 
 
 class HomepageView(generic.TemplateView):
@@ -38,6 +39,11 @@ class HomepageView(generic.TemplateView):
         """Show 4 most recent comments by date."""
 
         return Comment.objects.order_by("-submit_date")[:4]
+
+    def get_context_data(self, **kwargs):
+        context = super(HomepageView, self).get_context_data(**kwargs)
+        context['semester'] = semester = Semester.objects.latest('id')
+        return context
 
 
 class TestErrorView(generic.View):

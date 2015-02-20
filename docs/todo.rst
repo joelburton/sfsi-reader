@@ -1,5 +1,4 @@
 - logging on production
-- fix CSS blue colors on hovers, button clicks, etc
 - make comments have a link to piece of content
 - remove grapelli, switch to django-admin-bootstrap
 - don't make us re-index link/pdf when we make a trivial save to these items!

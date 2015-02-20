@@ -317,4 +317,3 @@ class Suggestion(TimeStampedModel):
 
     def __unicode__(self):
         return self.title
-

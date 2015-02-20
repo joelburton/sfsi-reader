@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load avatar_tags %}
 
 {% block title %}Members{% endblock %}
 
@@ -7,14 +8,23 @@
   <p class="lead">Looking to connect with your fellow students?</p>
 
   {% for semester in semesters %}
-    <h2>{{ semester.title }}</h2>
-    <ul>
-      {%  for student in semester.students %}
-        <li><a href="{{ student.get_absolute_url }}">{{ student.get_full_name }}</a></li>
-      {% empty %}
-        <li>(no students have public profiles for this semester)</li>
-      {% endfor %}
-    </ul>
+    {% with students=semester.students %}
+      <h2>{{ semester.title }}</h2>
+      {% if students %}
+        <div class="row">
+          {% for student in semester.students %}
+            {% with url=student.get_absolute_url %}
+            <div class="col-xs-4 col-sm-3 col-md-2">
+              <div class="text-center"><a href="{{ url }}">{% avatar student %}</a></div>
+              <div class="text-center" style="height: 4em"><a href="{{ url }}">{{ student.get_full_name }}</a></div>
+            </div>
+            {% endwith %}
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="text-muted">No students have public profiles for this semester.</p>
+      {% endif %}
+    {% endwith %}
 
   {% empty %}
     <p>Sorry, you are not part of a semester with students.</p>

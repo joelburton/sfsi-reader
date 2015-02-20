@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load comments %}
+{% load comments bookmarks_tags %}
 
 {% block title %}{{ resource.title }}{% endblock %}
 
@@ -25,6 +25,11 @@
 {% endblock %}
 
 {% block portlets %}
+  <div class="portlet">
+    <header>Bookmark</header>
+    {% bookmark_widget for object %}
+  </div>
+
   <div class="portlet">
     <header>Comments</header>
     {% render_comment_list for resource %}

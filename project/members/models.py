@@ -44,3 +44,5 @@ class Member(AbstractUser):
     @permalink
     def get_absolute_url(self):
         return 'member.detail', (), {'slug': self.username}
+
+

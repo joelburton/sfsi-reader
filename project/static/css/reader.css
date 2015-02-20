@@ -51,6 +51,7 @@ body {
 }
 .navbar .dropdown-menu li a {
   color: black !important;
+  font-weight: 400 !important;
 }
 .navbar .search-input {
   border-radius: 30px;
@@ -97,6 +98,9 @@ a {
 .glyphicon-user {
   color: purple;
 }
+.nav .glyphicon-bookmark {
+  color: lightblue;
+}
 #homepage .homepage-nav {
   margin-top: 3em;
 }
@@ -134,9 +138,18 @@ dt {
 dd {
   color: #333;
 }
+button,
+input[type=submit],
+input[type=button],
+a.btn {
+  border-radius: 5px !important;
+}
 .btn-primary {
   background-color: red;
   border-color: darkred;
+}
+.btn-primary:hover {
+  background-color: darkred;
 }
 #search-results .highlight {
   color: #999;
