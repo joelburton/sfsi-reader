@@ -1,11 +1,18 @@
 <div class="bookmark-widget">
-  <button class="bookmark-button btn btn-default input-sm {% if is_bookmarked_by_user %}active{% endif %}"
-          data-href="{% url 'bookmarks:bookmark_toggle' content_type_id=content_type_id object_id=object.pk %}">
-      <span class="bookmark-unbookmark {% if not is_bookmarked_by_user %}hidden{% endif %}">
+  <button class="bookmark-button btn btn-default input-sm
+            {% if bookmarked %}active{% endif %}
+            {% if ajax %}bookmark-needs-loading{% endif %}"
+          {% if ajax %}disabled{% endif %}
+          data-toggle-href="{{ toggle_url }}"
+          data-get-href="{{ get_url }}">
+      <span class="bookmark-unbookmark {% if ajax or not bookmarked %}hidden{% endif %}">
           <span class="glyphicon glyphicon-bookmark"></span> Remove
       </span>
-      <span class="bookmark-bookmark {% if is_bookmarked_by_user %}hidden{% endif %}">
+      <span class="bookmark-bookmark {% if ajax or bookmarked %}hidden{% endif %}">
           <span class="glyphicon glyphicon-bookmark"></span> Bookmark
+      </span>
+      <span class="bookmark-loading {% if not ajax %}hidden{% endif %}">
+          <span class="glyphicon glyphicon-bookmark"></span> Loading
       </span>
   </button>
 </div>
