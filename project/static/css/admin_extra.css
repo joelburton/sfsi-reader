@@ -1,6 +1,0 @@
-/* Hide "position" fields on admin interface; these are used for ordering things and humans
-   don't interact with them directly. */
-
-div.grp-row.position {
-    display: none;
-}

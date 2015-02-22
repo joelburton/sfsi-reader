@@ -91,10 +91,11 @@ DJANGO_APPS = (
     'django.contrib.staticfiles',
 
     # Admin panel and documentation:
-    'grappelli',
+    'django_admin_bootstrapped',
     'django.contrib.admin',
 
     'bootstrap3',
+    'tinymce',
     'django_comments',
     'avatar',
     'django_extensions',
@@ -110,8 +111,6 @@ LOCAL_APPS = (
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
 
 WSGI_APPLICATION = '%s.wsgi.application' % SITE_NAME
-
-GRAPPELLI_ADMIN_TITLE = 'SFSI Reader Administration'
 
 
 ########### ALL AUTH CONFIGURATION
@@ -133,7 +132,8 @@ INSTALLED_APPS += (
 )
 
 BOOTSTRAP3 = {
-    'css_url': "//netdna.bootstrapcdn.com/bootswatch/3.3.2/yeti/bootstrap.min.css"
+    'css_url': "//netdna.bootstrapcdn.com/bootswatch/3.3.2/yeti/bootstrap.min.css",
+    'set_required': False
 }
 
 
@@ -212,3 +212,28 @@ LOGGING = {
 }
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+
+##################################################################################################
+# Bootstrap / Bootstrap Admin
+
+# Use Bootstrap for rendering admin fields
+DAB_FIELD_RENDERER = 'django_admin_bootstrapped.renderers.BootstrapFieldRenderer'
+
+
+##################################################################################################
+# TinyMCE (HTML editor)
+#
+# Simplify the TinyMCE to remove a lot of un-needed UI complexity
+
+TINYMCE_JS_URL = "http://tinymce.cachefly.net/4.1/tinymce.min.js"
+TINYMCE_DEFAULT_CONFIG = {
+    'plugins': "paste,link",
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 10,
+    'height': 100,
+    'menubar': False,
+    'toolbar': 'undo redo | cut copy paste pastetext | styleselect | removeformat | bold italic'
+               ' | bullist numlist | blockquote | link unlink',
+}
+TINYMCE_SPELLCHECKER = False
+TINYMCE_COMPRESSOR = False

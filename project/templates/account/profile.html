@@ -23,6 +23,9 @@
 {% endblock %}
 
 {% block extra_js %}
-  <script src="{% static 'grappelli/tinymce/jscripts/tiny_mce/tiny_mce.js' %}"></script>
-  <script src="{% static 'js/tinymce_setup.js' %}"></script>
+  <script>
+    var django = {};
+    django.jQuery = jQuery;
+  </script>
+  {{ form.media }}
 {% endblock %}

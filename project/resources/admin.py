@@ -1,12 +1,13 @@
 """Administrative resources related to resources."""
 
 from django.contrib import admin
+from django_admin_bootstrapped.admin.models import SortableInline
 
 from .models import Day, Topic, Resource, make_published, make_private, Suggestion
 from .forms import ResourceForm, TopicInlineForm
 
 
-class TopicInline(admin.StackedInline):
+class TopicInline(admin.StackedInline, SortableInline):
     """Inlined topic list appearing on day form."""
 
     fields = ['title', 'description', 'status', 'position']
@@ -17,6 +18,7 @@ class TopicInline(admin.StackedInline):
     form = TopicInlineForm
 
 
+@admin.register(Day)
 class DayAdmin(admin.ModelAdmin):
     """Day administrative pages."""
 
@@ -36,7 +38,7 @@ class DayAdmin(admin.ModelAdmin):
                 'modified',
                 'status_changed',
             ),
-            'classes': ('grp-collapse', 'grp-closed')}))
+            'classes': ['collapse']}))
     readonly_fields = ['id', 'created', 'modified', 'status_changed']
     list_display = ('title', 'slug', 'description', 'is_active')
     search_fields = ['title', 'description']
@@ -45,13 +47,8 @@ class DayAdmin(admin.ModelAdmin):
     actions = [make_published, make_private]
     inlines = [TopicInline]
 
-    class Media:
-        """Additional CSS/JS to send out with this admin interface."""
-        css = {"all": ["css/admin_extra.css"]}
 
-admin.site.register(Day, DayAdmin)
-
-
+@admin.register(Topic)
 class TopicAdmin(admin.ModelAdmin):
     """Topic administrative pages."""
 
@@ -72,7 +69,7 @@ class TopicAdmin(admin.ModelAdmin):
                 'modified',
                 'status_changed',
             ),
-            'classes': ('grp-collapse', 'grp-closed')}))
+            'classes': ['collapse']}))
     readonly_fields = ['id', 'created', 'modified', 'status_changed']
     list_display = ('day', 'title', 'slug', 'description', 'is_active')
     search_fields = ['day__title', 'title', 'description']
@@ -81,9 +78,8 @@ class TopicAdmin(admin.ModelAdmin):
     actions = [make_published, make_private]
     ordering = ['day', 'position']
 
-admin.site.register(Topic, TopicAdmin)
 
-
+@admin.register(Resource)
 class ResourceAdmin(admin.ModelAdmin):
     """Resource administrative pages."""
 
@@ -111,7 +107,7 @@ class ResourceAdmin(admin.ModelAdmin):
                 'status_changed',
                 'is_more',
             ),
-            'classes': ('grp-collapse', 'grp-closed')}))
+            'classes': ['collapse']}))
     readonly_fields = ['id', 'created', 'modified', 'status_changed', 'file_size', 'file_mimetype']
     list_display = ('topic', 'title', 'slug', 'description', 'key', 'required', 'is_active')
     search_fields = ['title', 'description', 'topic__title']
@@ -121,9 +117,8 @@ class ResourceAdmin(admin.ModelAdmin):
     ordering = ['topic', 'title']
     form = ResourceForm
 
-admin.site.register(Resource, ResourceAdmin)
 
-
+@admin.register(Suggestion)
 class SuggestionAdmin(admin.ModelAdmin):
     """Suggestion administrative pages."""
 
@@ -131,4 +126,6 @@ class SuggestionAdmin(admin.ModelAdmin):
     list_display = ('title', 'description', 'created', 'name')
     search_fields = ('title', 'description', 'name', 'email')
 
-admin.site.register(Suggestion, SuggestionAdmin)
+
+admin.site.site_header = "SFSI Reader"
+admin.site.site_title = "SFSI Reader"

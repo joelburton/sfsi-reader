@@ -1,10 +1,11 @@
 """Administrative resources related to resources."""
 
 from django import forms
-
+from django.db import models
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserCreationForm
+from tinymce.widgets import TinyMCE
 
 from .models import Semester, Member
 
@@ -36,11 +37,12 @@ class MemberAdmin(UserAdmin):
         }),
     )
 
+    formfield_overrides = {
+        models.TextField: {'widget':TinyMCE}
+    }
+
     class Media:
-        js = [
-            '/static/grappelli/tinymce/jscripts/tiny_mce/tiny_mce.js',
-            '/static/js/tinymce_setup.js',
-        ]
+        js = ('http://tinymce.cachefly.net/4.1/tinymce.min.js',)
 
 
 admin.site.register(Semester)

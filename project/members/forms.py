@@ -1,5 +1,6 @@
 from django import forms
 from django.forms import Textarea, formset_factory
+from tinymce.widgets import TinyMCE
 
 from .models import Member, Semester
 
@@ -15,6 +16,9 @@ class MemberProfileForm(forms.ModelForm):
             'description',
             'body',
         ]
+        widgets = {
+            'body': TinyMCE(mce_attrs={'height': 200}),
+        }
 
 
 class MemberBulkCreationForm(forms.Form):
@@ -45,4 +49,5 @@ class SemesterBulkCreationForm(forms.Form):
     default_password = forms.CharField(max_length=20, required=True, initial="yaysexed")
     email_body = forms.CharField(widget=Textarea({'rows': 17, 'cols': 40}), initial=EMAIL_DEFAULT)
 
-MemberBulkCreationFormSet= formset_factory(MemberBulkCreationForm, extra=40)
+
+MemberBulkCreationFormSet = formset_factory(MemberBulkCreationForm, extra=40)

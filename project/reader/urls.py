@@ -5,12 +5,14 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
 
+import tinymce.urls
+
 from .views import HomepageView, TestErrorView
 from members.views import ProfileUpdateView
 
 
 urlpatterns = [
-    url(r'^grappelli/', include('grappelli.urls')),
+    url(r'^tinymce/', include(tinymce.urls)),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^comments/', include('django_comments.urls')),
     url(r'^accounts/profile/', ProfileUpdateView.as_view(), name='account_profile'),
