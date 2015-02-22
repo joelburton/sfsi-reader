@@ -227,13 +227,13 @@ DAB_FIELD_RENDERER = 'django_admin_bootstrapped.renderers.BootstrapFieldRenderer
 
 TINYMCE_JS_URL = "http://tinymce.cachefly.net/4.1/tinymce.min.js"
 TINYMCE_DEFAULT_CONFIG = {
-    'plugins': "paste,link",
+    'plugins': "autolink,paste,link,textcolor",
+    'link_title': False,
     'cleanup_on_startup': True,
-    'custom_undo_redo_levels': 10,
     'height': 100,
     'menubar': False,
-    'toolbar': 'undo redo | cut copy paste pastetext | styleselect | removeformat | bold italic'
-               ' | bullist numlist | blockquote | link unlink',
+    'statusbar': False,
+    'toolbar': 'removeformat | bold italic forecolor backcolor | bullist numlist | link unlink',
 }
 TINYMCE_SPELLCHECKER = False
 TINYMCE_COMPRESSOR = False
