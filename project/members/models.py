@@ -37,8 +37,8 @@ class Member(AbstractUser):
     visible = models.BooleanField(
         default=False,
         help_text=(
-            'Check this to make your profile visible to your fellow students.' +
-            ' Regardless, your email will never be shown to anyone but training staff.'),
+            'Check to make your profile visible to your fellow students.' +
+            ' Regardless, your email remains private to training staff.'),
     )
 
     @permalink

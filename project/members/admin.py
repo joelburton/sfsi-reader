@@ -38,7 +38,7 @@ class MemberAdmin(UserAdmin):
     )
 
     formfield_overrides = {
-        models.TextField: {'widget':TinyMCE}
+        models.TextField: {'widget': TinyMCE}
     }
 
     class Media:
