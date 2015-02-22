@@ -113,7 +113,7 @@ INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
 WSGI_APPLICATION = '%s.wsgi.application' % SITE_NAME
 
 
-########### ALL AUTH CONFIGURATION
+# ALL AUTH CONFIGURATION
 
 TEMPLATE_CONTEXT_PROCESSORS += (
     "allauth.account.context_processors.account",
@@ -144,7 +144,7 @@ from django.core.mail.utils import DNS_NAME
 
 DNS_NAME._fqdn = "localhost"
 
-
+##############
 
 MIDDLEWARE_CLASSES += (
     'reader.middleware.LoginRequiredMiddleware',

@@ -23,6 +23,7 @@ def py_convert_pdf_to_txt(fp):
     """
 
     # Ugh, PDFminer is slow. Use this only if we need to!
+    # (this code is currently unused)
 
     rsrcmgr = PDFResourceManager()
     retstr = StringIO()
@@ -38,9 +39,9 @@ def py_convert_pdf_to_txt(fp):
                                   caching=caching, check_extractable=True):
         interpreter.process_page(page)
     device.close()
-    str = retstr.getvalue()
+    str_ = retstr.getvalue()
     retstr.close()
-    return str
+    return str_
 
 
 def convert_pdf_to_txt(fp):

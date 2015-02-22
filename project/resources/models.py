@@ -12,6 +12,7 @@ from model_utils.models import TimeStampedModel, StatusModel
 from .pdfconvert import convert_pdf_to_txt
 
 
+# noinspection PyUnusedLocal
 def make_published(modeladmin, request, queryset):
     """Action for administrative interface to publish."""
 
@@ -22,6 +23,7 @@ def make_published(modeladmin, request, queryset):
 make_published.short_description = 'Publish'
 
 
+# noinspection PyUnusedLocal
 def make_private(modeladmin, request, queryset):
     """Action for administrative interface to hide things."""
 
@@ -214,7 +216,7 @@ class Resource(MetadataMixin):
     def get_absolute_url(self):
         return 'resources:resource.detail', (), {'day_slug': self.topic.day.slug,
                                                  'topic_slug': self.topic.slug,
-                                                 'slug': self.slug }
+                                                 'slug': self.slug}
 
     def clean(self):
         """Validate model across fields."""
@@ -229,21 +231,21 @@ class Resource(MetadataMixin):
 
         return super(Resource, self).clean()
 
-    def index_file(self, file, mimetype=None, size=None):
+    def index_file(self, file_, mimetype=None, size=None):
         """Read contents of file and update metadata."""
 
-        if file:
-            self.file_mimetype = mimetype if mimetype is not None else file.content_type
-            self.file_size = size if size is not None else file.size
+        if file_:
+            self.file_mimetype = mimetype if mimetype is not None else file_.content_type
+            self.file_size = size if size is not None else file_.size
             if self.file_mimetype.endswith('/pdf'):
                 try:
-                    self.body = convert_pdf_to_txt(file)
+                    self.body = convert_pdf_to_txt(file_)
                 except Exception:
                     raise
                     # I'm uncertain what errors the converter might throw, but it's better to
                     # allow unread PDFs than raise errors on conversion, so we'll be a little
                     # overly broad here.
-                    self.body = ''
+                    # self.body = ''
             else:
                 self.body = ''
         else:

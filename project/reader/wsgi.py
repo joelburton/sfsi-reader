@@ -22,6 +22,7 @@ SITE_ROOT = dirname(dirname(abspath(__file__)))
 path.append(SITE_ROOT)
 
 try:
+    # noinspection PyPackageRequirements,PyUnresolvedReferences
     import env
 except ImportError:
     pass

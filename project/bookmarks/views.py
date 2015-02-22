@@ -4,7 +4,6 @@ from django.views import generic
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
-import time
 
 from .models import Bookmark
 
@@ -28,6 +27,7 @@ def bookmark_toggle(request, content_type_id, object_id):
     if not created:
         bookmark.delete()
         return JsonResponse({'action': 'unset'})
+
 
 @login_required
 @never_cache

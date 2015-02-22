@@ -7,7 +7,6 @@ from django.db import models
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserCreationForm
-
 from tinymce.widgets import TinyMCE
 
 from .models import Semester, Member
@@ -19,6 +18,7 @@ class MemberAdminCreationForm(UserCreationForm):
     def clean_username(self):
         username = self.cleaned_data["username"]
         try:
+            # noinspection PyProtectedMember
             Member._default_manager.get(username=username)
         except Member.DoesNotExist:
             return username
@@ -33,10 +33,11 @@ class MemberAdmin(UserAdmin):
     add_form = MemberAdminCreationForm
     fieldsets = UserAdmin.fieldsets + (
         ('Profile', {
-            'fields': ('description',
-                       'body',
-                       'visible',
-                       'semesters',
+            'fields': (
+                'description',
+                'body',
+                'visible',
+                'semesters',
             )
         }),
     )

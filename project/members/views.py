@@ -107,7 +107,6 @@ class MemberBulkAddView(FormView):
         if not member_form.is_valid():
             return self.form_invalid(form)
 
-
         semester = form.cleaned_data['semester']
         password = form.cleaned_data['default_password']
         email_body = form.cleaned_data['email_body']
@@ -177,6 +176,3 @@ class MemberBulkAddSuccessView(TemplateView):
         context['errors'] = self.request.session.pop('errors')
         context['associated'] = self.request.session.pop('associated')
         return context
-
-
-

@@ -26,8 +26,7 @@ class HomepageView(generic.TemplateView):
                 .only('title', 'topic_id', 'id', 'slug')
                 .filter(created__gt=start_date)
                 .select_related("topic", "topic__day")
-                .order_by("-created")[:4]
-        )
+                .order_by("-created")[:4])
 
     def show_students(self):
         """Should we show link to other students in this semester?"""
@@ -42,7 +41,7 @@ class HomepageView(generic.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(HomepageView, self).get_context_data(**kwargs)
-        context['semester'] = semester = Semester.objects.latest('id')
+        context['semester'] = Semester.objects.latest('id')
         return context
 
 

@@ -1,5 +1,5 @@
 Install
-=========
+=======
 
 These are quick notes for getting a new development environment online.
 
