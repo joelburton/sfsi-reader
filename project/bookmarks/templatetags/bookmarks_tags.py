@@ -10,7 +10,6 @@ register = template.Library()
 
 @register.inclusion_tag('bookmarks/includes/bookmark.html', takes_context=True)
 def bookmark_widget(context, obj, ajax=False):
-
     content_type_id = ContentType.objects.get_for_model(obj).pk
     obj_id = obj.pk
     user = context['request'].user

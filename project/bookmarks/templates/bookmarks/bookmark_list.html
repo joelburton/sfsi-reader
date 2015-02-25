@@ -10,7 +10,7 @@
 
     .bookmarks-list-item {
       font-size: 125%;
-      width: 75%;
+      width: 70%;
     }
 
     .bookmarks-list-created {
@@ -18,7 +18,7 @@
     }
 
     .bookmarks-list-widget {
-      width: 10%;
+      width: 15%;
     }
 
     .bookmarks-list-widget button {
@@ -48,7 +48,7 @@
             <td class="bookmarks-list-item"><a href="{{ obj.get_absolute_url }}">{{ obj }}</a></td>
             <td class="bookmarks-list-created">{{ obj.created|date:"SHORT_DATE_FORMAT" }}</td>
             <td class="bookmarks-list-widget"><span
-                class="pull-right">{% bookmark_widget for obj %}</span></td>
+                class="pull-right">{% bookmark_widget obj %}</span></td>
           </tr>
         {% endwith %}
 
