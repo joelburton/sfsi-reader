@@ -51,7 +51,8 @@ class MemberAdmin(UserAdmin):
         """Don't show add-new button for semesters field."""
 
         form = super(MemberAdmin, self).get_form(request, obj, **kwargs)
-        form.base_fields['semesters'].widget.can_add_related = False
+        if 'semesters' in form.base_fields:
+            form.base_fields['semesters'].widget.can_add_related = False
         return form
 
 

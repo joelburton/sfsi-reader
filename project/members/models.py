@@ -20,6 +20,7 @@ class Member(AbstractUser):
     semesters = models.ManyToManyField(
         Semester,
         blank=True,
+        null=True,
     )
 
     description = models.CharField(

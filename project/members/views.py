@@ -7,6 +7,7 @@ from django.utils.decorators import method_decorator
 from django.views import generic
 from django.views.generic import UpdateView, FormView, TemplateView
 from django.contrib.admin.views.decorators import staff_member_required
+from django.utils import timezone
 
 from .forms import MemberProfileForm, SemesterBulkCreationForm, \
     MemberBulkCreationFormSet
@@ -142,7 +143,8 @@ class MemberBulkAddView(FormView):
 
                     member = Member.objects.create_user(username=username,
                                                         email=email,
-                                                        password=password)
+                                                        password=password,
+                                                        last_login=timezone.now())
                     member.semesters = [semester]
                     member.first_name = fn
                     member.last_name = ln
