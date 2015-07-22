@@ -5,7 +5,7 @@ Views for site.
 import datetime
 
 from django.views import generic
-from django_comments import Comment
+from django_comments import get_model as get_comment_model
 
 from resources.models import Resource
 from members.models import Semester
@@ -37,7 +37,7 @@ class HomepageView(generic.TemplateView):
     def comment_list():
         """Show 4 most recent comments by date."""
 
-        return Comment.objects.order_by("-submit_date")[:4]
+        return get_comment_model().objects.order_by("-submit_date")[:4]
 
     def get_context_data(self, **kwargs):
         context = super(HomepageView, self).get_context_data(**kwargs)
